@@ -69,6 +69,7 @@ const Gallery = () => {
                 src={item.src}
                 alt={item.alt}
                 loading="lazy"
+                decoding="async"
                 onError={(e) => {
                   e.target.style.display = 'none';
                 }}
@@ -113,6 +114,7 @@ const Gallery = () => {
               <img
                 src={galleryItems[lightboxIndex].src}
                 alt={galleryItems[lightboxIndex].alt}
+                decoding="async"
                 onError={(e) => {
                   e.target.style.display = 'none';
                 }}

@@ -14,9 +14,8 @@ export const EMAIL         = 'skmovers41@gmail.com';
 export const WHATSAPP_URL  = 'https://wa.me/966547469226';
 export const FACEBOOK_URL  = 'https://www.facebook.com/share/19KLfzBnrE/';
 export const MAPS_URL      = 'https://maps.app.goo.gl/LL1CgQrLtKbwXKFF9';
-export const OG_IMAGE      = `${BASE_URL}/og-image.jpg`;
+export const OG_IMAGE      = `${BASE_URL}/logo.png`;
 export const LOGO_URL      = `${BASE_URL}/logo.png`;
-export const FOUNDED       = '2019';
 
 /** Build an absolute URL for a given route path */
 export const buildUrl = (path = '/') => `${BASE_URL}${path}`;
@@ -34,9 +33,9 @@ export const SERVICE_AREAS = [
 /** Shared OG image dimensions and alt text */
 export const OG_IMAGE_META = {
   url:    OG_IMAGE,
-  width:  '1200',
-  height: '630',
-  alt:    'SK Movers – Professional Moving & Packing Company in Saudi Arabia',
+  width:  '512',
+  height: '512',
+  alt:    'SK Movers – Professional Movers in Saudi Arabia',
 };
 
 /**
@@ -51,7 +50,7 @@ export const BUSINESS_LD = {
   name: SITE_NAME,
   alternateName: ['SK Movers Saudi Arabia', 'SK Moving Company KSA'],
   description:
-    'Professional furniture moving, house shifting, office relocation, packing, unpacking, and storage services throughout Saudi Arabia.',
+    'Professional furniture moving Saudi Arabia, house shifting Riyadh, office relocation, and storage services across Saudi Arabia.',
   slogan: 'We Move With You',
   url: `${BASE_URL}/`,
   logo: {
@@ -94,97 +93,90 @@ export const BUSINESS_LD = {
   openingHours: 'Mo-Su 00:00-23:59',
   paymentAccepted: 'Cash, Bank Transfer',
   currenciesAccepted: 'SAR',
-  foundingDate: FOUNDED,
-  numberOfEmployees: { '@type': 'QuantitativeValue', value: 15 },
   sameAs: [FACEBOOK_URL, WHATSAPP_URL],
   serviceType: [
-    'Furniture Moving', 'House Shifting', 'Office Relocation',
-    'Packing Services', 'Unpacking Services', 'Furniture Assembly',
-    'Furniture Disassembly', 'Loading and Unloading',
-    'Safe Transportation', 'Storage Services',
+    'Furniture Moving Saudi Arabia',
+    'House Shifting Riyadh',
+    'Office Relocation Saudi Arabia',
+    'Packers and Movers Riyadh',
+    'Storage Services Saudi Arabia',
+    'Furniture Assembly',
+    'Loading and Unloading',
   ],
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '5',
-    ratingCount: '500',
-    reviewCount: '500',
-    bestRating: '5',
-    worstRating: '1',
-  },
 };
 
 /** Per-page SEO configuration — title, description, keywords */
 export const PAGES = {
   home: {
     path: '/',
-    title: 'SK Movers – Professional Movers & Packers in Saudi Arabia',
+    title: 'SK Movers | Best Movers in Saudi Arabia & House Shifting Riyadh',
     description:
-      'SK Movers offers furniture moving, house shifting, office relocation, packing & storage across Saudi Arabia. Trusted, safe, on time. Call for a free quote.',
+      'Looking for reliable movers in Saudi Arabia? SK Movers offers expert house shifting in Riyadh, furniture moving, and office relocation services. Get a free quote!',
     keywords:
-      'movers in Saudi Arabia, packers and movers Saudi Arabia, house shifting Saudi Arabia, furniture moving Saudi Arabia, moving company Saudi Arabia, office relocation Saudi Arabia, villa moving Saudi Arabia, local movers Saudi Arabia, professional movers KSA',
+      'movers in Saudi Arabia, packers and movers Riyadh, house shifting Riyadh, office relocation Saudi Arabia, furniture moving Saudi Arabia, storage services Saudi Arabia',
   },
   about: {
     path: '/about',
-    title: 'About SK Movers | Trusted Moving Company in Saudi Arabia',
+    title: 'About Us | Professional Packers and Movers Riyadh | SK Movers',
     description:
-      'Learn about SK Movers – your trusted relocation partner in Saudi Arabia. 5+ years experience, 500+ happy clients, covering Riyadh, Jeddah, Dammam and more.',
+      'Discover SK Movers, your trusted packers and movers in Riyadh. We specialize in safe furniture moving, office relocation, and storage services across Saudi Arabia.',
     keywords:
-      'about SK Movers, trusted movers Saudi Arabia, professional moving company KSA, reliable movers Saudi Arabia, SK Movers history',
+      'about SK Movers, packers and movers Riyadh, moving company Saudi Arabia, reliable movers Riyadh, professional movers KSA',
   },
   services: {
     path: '/services',
-    title: 'Moving Services | SK Movers – House Shifting & Office Relocation KSA',
+    title: 'Moving Services | House Shifting & Furniture Moving Saudi Arabia',
     description:
-      'SK Movers offers furniture moving, house shifting, office relocation, packing, unpacking, assembly, disassembly & storage across Saudi Arabia. Get a free quote today.',
+      'Comprehensive moving services including house shifting Riyadh, office relocation Saudi Arabia, expert packing, and secure storage services. Book SK Movers today.',
     keywords:
-      'furniture moving Saudi Arabia, house shifting Saudi Arabia, office relocation Saudi Arabia, packing services Saudi Arabia, storage services Saudi Arabia, villa moving Saudi Arabia, apartment moving Saudi Arabia, loading unloading Saudi Arabia',
+      'house shifting Riyadh, furniture moving Saudi Arabia, office relocation Saudi Arabia, storage services Saudi Arabia, packing services Riyadh',
   },
   serviceAreas: {
     path: '/service-areas',
-    title: 'Service Areas | SK Movers – Riyadh, Jeddah, Dammam & More',
+    title: 'Service Areas | Movers in Saudi Arabia, Riyadh, Jeddah, Dammam',
     description:
-      'SK Movers serves all major cities in Saudi Arabia: Riyadh, Jeddah, Dammam, Medina, Jubail & Khobar. Professional relocation services at your doorstep.',
+      'SK Movers serves all major regions. We are the top movers in Saudi Arabia, providing localized house shifting in Riyadh, Jeddah, Dammam, and more.',
     keywords:
-      'movers Riyadh, movers Jeddah, movers Dammam, movers Medina, movers Jubail, movers Khobar, local movers Saudi Arabia, moving services KSA cities, furniture moving Riyadh',
+      'movers in Saudi Arabia, house shifting Riyadh, movers Jeddah, movers Dammam, local movers Saudi Arabia, relocation services KSA',
   },
   gallery: {
     path: '/gallery',
-    title: 'Gallery | SK Movers – Professional Moving Team in Action',
+    title: 'Gallery | SK Movers – Furniture Moving Saudi Arabia in Action',
     description:
-      'Browse photos of SK Movers team completing successful residential and commercial moves across Saudi Arabia. See our professional handling of furniture and belongings.',
+      'View photos of our professional team handling house shifting in Riyadh and office relocation across Saudi Arabia. See our furniture moving expertise.',
     keywords:
-      'SK Movers gallery, moving photos Saudi Arabia, professional movers pictures, furniture moving team KSA, relocation photos',
+      'SK Movers gallery, furniture moving Saudi Arabia, house shifting Riyadh photos, professional movers pictures',
   },
   whyChooseUs: {
     path: '/why-choose-us',
-    title: 'Why Choose SK Movers | Best Movers in Saudi Arabia',
+    title: 'Why Choose SK Movers | Top Office Relocation Saudi Arabia',
     description:
-      'SK Movers: professional crew, 100% safe handling, transparent pricing, on-time delivery guaranteed. Discover why we are the #1 choice for relocation in Saudi Arabia.',
+      'Why are we the best movers in Saudi Arabia? We offer 100% safe furniture moving, transparent pricing, and timely house shifting in Riyadh.',
     keywords:
-      'best movers Saudi Arabia, reliable movers KSA, affordable moving company Saudi Arabia, professional packers movers Saudi Arabia, why choose SK Movers',
+      'best movers Saudi Arabia, reliable movers KSA, why choose SK Movers, packers and movers Riyadh, office relocation Saudi Arabia',
   },
   testimonials: {
     path: '/testimonials',
-    title: 'Customer Reviews | SK Movers – 5-Star Moving Company in KSA',
+    title: 'Client Reviews | Trusted Movers in Saudi Arabia & Riyadh',
     description:
-      'Read verified customer reviews of SK Movers from Riyadh, Jeddah, Dammam and more. 500+ happy clients rate us 5 stars for professional, safe moving services.',
+      'Read what our satisfied clients say about our house shifting in Riyadh and furniture moving services across Saudi Arabia. We deliver 5-star moving experiences.',
     keywords:
-      'SK Movers reviews, moving company reviews Saudi Arabia, best movers reviews KSA, customer testimonials movers, 5 star movers Saudi Arabia',
+      'SK Movers reviews, packers and movers Riyadh reviews, moving company testimonials Saudi Arabia, best movers KSA feedback',
   },
   faq: {
     path: '/faq',
-    title: 'FAQ | SK Movers – Moving Services Questions Answered',
+    title: 'FAQ | Moving, Packing & Storage Services Saudi Arabia',
     description:
-      'Frequently asked questions about SK Movers: pricing, packing materials, booking lead time, office moves, storage options, insurance, and cities covered in Saudi Arabia.',
+      'Got questions about house shifting in Riyadh or office relocation in Saudi Arabia? Read our FAQ for details on pricing, packing, and storage services.',
     keywords:
-      'moving FAQ Saudi Arabia, movers questions KSA, moving cost Saudi Arabia, how to hire movers Saudi Arabia, packing questions KSA, storage FAQ Saudi Arabia',
+      'moving FAQ Saudi Arabia, house shifting Riyadh questions, storage services Saudi Arabia FAQ, packing questions KSA',
   },
   contact: {
     path: '/contact',
-    title: 'Contact SK Movers | Free Moving Quote – Saudi Arabia',
+    title: 'Contact SK Movers | Hire Packers and Movers Riyadh',
     description:
-      'Contact SK Movers for a free, no-obligation moving quote. Available 24/7 across Saudi Arabia. Call or WhatsApp +966 54 746 9226, or fill out our contact form.',
+      'Contact SK Movers for a free quote on furniture moving, house shifting, and office relocation in Saudi Arabia. Call or WhatsApp us 24/7.',
     keywords:
-      'contact movers Saudi Arabia, free moving quote Saudi Arabia, hire movers KSA, moving company contact Saudi Arabia, WhatsApp movers Saudi Arabia, 24/7 movers KSA',
+      'contact movers Saudi Arabia, packers and movers Riyadh contact, house shifting Riyadh quote, hire movers KSA',
   },
 };
