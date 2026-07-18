@@ -1,8 +1,11 @@
 import { useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
 import AOS from 'aos';
 import Layout from '../components/layout/Layout';
 import GallerySection from '../components/sections/Gallery';
+import PageSeo from '../seo/PageSeo';
+import JsonLd from '../seo/JsonLd';
+import { PAGES } from '../seo/seoConfig';
+import { gallerySchemas } from '../seo/schemas';
 
 const Gallery = () => {
   useEffect(() => {
@@ -10,12 +13,17 @@ const Gallery = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  const page = PAGES.gallery;
+
   return (
     <Layout>
-      <Helmet>
-        <title>Gallery | SK Movers - Professional Moving Team at Work</title>
-        <meta name="description" content="View our gallery of successful residential and commercial moves across Saudi Arabia. See the SK Movers team handling furniture with care and professionalism." />
-      </Helmet>
+      <PageSeo
+        title={page.title}
+        description={page.description}
+        path={page.path}
+        keywords={page.keywords}
+      />
+      <JsonLd data={gallerySchemas()} />
       <div className="pt-24 lg:pt-32">
         <GallerySection />
       </div>

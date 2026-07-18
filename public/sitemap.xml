@@ -2,57 +2,93 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>/</loc>
-    <lastmod>2026-07-16</lastmod>
+    <loc>https://skmover.vercel.app/</loc>
+    <lastmod>2026-07-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://skmover.vercel.app/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://skmover.vercel.app/" />
+    <xhtml:link rel="alternate" hreflang="ur" href="https://skmover.vercel.app/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://skmover.vercel.app/" />
   </url>
   <url>
-    <loc>/about</loc>
-    <lastmod>2026-07-16</lastmod>
+    <loc>https://skmover.vercel.app/about</loc>
+    <lastmod>2026-07-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://skmover.vercel.app/about" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://skmover.vercel.app/about" />
+    <xhtml:link rel="alternate" hreflang="ur" href="https://skmover.vercel.app/about" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://skmover.vercel.app/about" />
   </url>
   <url>
-    <loc>/services</loc>
-    <lastmod>2026-07-16</lastmod>
+    <loc>https://skmover.vercel.app/services</loc>
+    <lastmod>2026-07-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://skmover.vercel.app/services" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://skmover.vercel.app/services" />
+    <xhtml:link rel="alternate" hreflang="ur" href="https://skmover.vercel.app/services" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://skmover.vercel.app/services" />
   </url>
   <url>
-    <loc>/service-areas</loc>
-    <lastmod>2026-07-16</lastmod>
+    <loc>https://skmover.vercel.app/service-areas</loc>
+    <lastmod>2026-07-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://skmover.vercel.app/service-areas" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://skmover.vercel.app/service-areas" />
+    <xhtml:link rel="alternate" hreflang="ur" href="https://skmover.vercel.app/service-areas" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://skmover.vercel.app/service-areas" />
   </url>
   <url>
-    <loc>/gallery</loc>
-    <lastmod>2026-07-16</lastmod>
+    <loc>https://skmover.vercel.app/gallery</loc>
+    <lastmod>2026-07-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://skmover.vercel.app/gallery" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://skmover.vercel.app/gallery" />
+    <xhtml:link rel="alternate" hreflang="ur" href="https://skmover.vercel.app/gallery" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://skmover.vercel.app/gallery" />
   </url>
   <url>
-    <loc>/why-choose-us</loc>
-    <lastmod>2026-07-16</lastmod>
+    <loc>https://skmover.vercel.app/why-choose-us</loc>
+    <lastmod>2026-07-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://skmover.vercel.app/why-choose-us" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://skmover.vercel.app/why-choose-us" />
+    <xhtml:link rel="alternate" hreflang="ur" href="https://skmover.vercel.app/why-choose-us" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://skmover.vercel.app/why-choose-us" />
   </url>
   <url>
-    <loc>/testimonials</loc>
-    <lastmod>2026-07-16</lastmod>
+    <loc>https://skmover.vercel.app/testimonials</loc>
+    <lastmod>2026-07-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://skmover.vercel.app/testimonials" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://skmover.vercel.app/testimonials" />
+    <xhtml:link rel="alternate" hreflang="ur" href="https://skmover.vercel.app/testimonials" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://skmover.vercel.app/testimonials" />
   </url>
   <url>
-    <loc>/faq</loc>
-    <lastmod>2026-07-16</lastmod>
+    <loc>https://skmover.vercel.app/faq</loc>
+    <lastmod>2026-07-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://skmover.vercel.app/faq" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://skmover.vercel.app/faq" />
+    <xhtml:link rel="alternate" hreflang="ur" href="https://skmover.vercel.app/faq" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://skmover.vercel.app/faq" />
   </url>
   <url>
-    <loc>/contact</loc>
-    <lastmod>2026-07-16</lastmod>
+    <loc>https://skmover.vercel.app/contact</loc>
+    <lastmod>2026-07-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://skmover.vercel.app/contact" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://skmover.vercel.app/contact" />
+    <xhtml:link rel="alternate" hreflang="ur" href="https://skmover.vercel.app/contact" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://skmover.vercel.app/contact" />
   </url>
 </urlset>

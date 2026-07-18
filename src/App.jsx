@@ -12,6 +12,7 @@ import WhyChooseUs from './pages/WhyChooseUs';
 import Testimonials from './pages/Testimonials';
 import FAQ from './pages/FAQ';
 import Contact from './pages/Contact';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -28,8 +29,8 @@ function App() {
             <Route path="/testimonials" element={<Testimonials />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/contact" element={<Contact />} />
-            {/* Fallback route */}
-            <Route path="*" element={<Home />} />
+            {/* 404 fallback */}
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
       </LanguageProvider>

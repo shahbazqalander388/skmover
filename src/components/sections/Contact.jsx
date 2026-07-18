@@ -1,13 +1,55 @@
 import { useState } from 'react';
-import { Phone, Mail, MapPin, Map, MessageCircle, Send, Contact as ContactIcon } from 'lucide-react';
+import { Phone, Mail, MapPin, Map, MessageCircle, Contact as ContactIcon, AlertCircle } from 'lucide-react';
+import { FaWhatsapp } from 'react-icons/fa';
 import { FaFacebookF } from 'react-icons/fa';
 import { useLanguage } from '../../context/LanguageContext';
 
 const Contact = () => {
   const { t, dir } = useLanguage();
   const [form, setForm] = useState({ name: '', phone: '', email: '', service: '', message: '' });
+  const [errors, setErrors] = useState({});
 
-  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+    // Clear error on change
+    if (errors[e.target.name]) {
+      setErrors((prev) => ({ ...prev, [e.target.name]: '' }));
+    }
+  };
+
+  const handleWhatsApp = (e) => {
+    e.preventDefault();
+
+    // Validate required fields
+    const newErrors = {};
+    if (!form.name.trim()) newErrors.name = 'Full name is required.';
+    if (!form.phone.trim()) newErrors.phone = 'Phone number is required.';
+    if (!form.message.trim()) newErrors.message = 'Message is required.';
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
+    // Build professionally formatted message
+    const lines = [
+      'Hello SK Movers,',
+      '',
+      'I would like to request your service.',
+      '',
+      `Full Name: ${form.name.trim()}`,
+      `Phone Number: ${form.phone.trim()}`,
+    ];
+    if (form.email.trim()) lines.push(`Email: ${form.email.trim()}`);
+    if (form.service) lines.push(`Service Required: ${form.service}`);
+    if (form.message.trim()) lines.push(`Message: ${form.message.trim()}`);
+    lines.push('');
+    lines.push('Please contact me. Thank you.');
+
+    const message = lines.join('\n');
+    const waUrl = `https://wa.me/966547469226?text=${encodeURIComponent(message)}`;
+    window.open(waUrl, '_blank', 'noopener,noreferrer');
+  };
 
   const services = [
     'Furniture Moving', 'House Shifting', 'Office Relocation',
@@ -172,8 +214,9 @@ const Contact = () => {
 
               <form
                 className="space-y-5"
-                onSubmit={(e) => e.preventDefault()}
+                onSubmit={handleWhatsApp}
                 aria-label="Contact form"
+                noValidate
               >
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   {/* Name */}
@@ -188,10 +231,18 @@ const Contact = () => {
                       value={form.name}
                       onChange={handleChange}
                       placeholder={t.contact.form.placeholder.name}
-                      required
-                      className="w-full px-4 py-3 rounded-xl text-sm text-white placeholder-gray-500 outline-none transition-all focus:ring-2 focus:ring-blue-500/50"
-                      style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)' }}
+                      className="w-full px-4 py-3 rounded-xl text-sm text-white placeholder-gray-500 outline-none transition-all focus:ring-2"
+                      style={{
+                        background: 'rgba(255,255,255,0.06)',
+                        border: errors.name ? '1px solid rgba(239,68,68,0.7)' : '1px solid rgba(255,255,255,0.1)',
+                        '--tw-ring-color': errors.name ? 'rgba(239,68,68,0.4)' : 'rgba(59,130,246,0.5)',
+                      }}
                     />
+                    {errors.name && (
+                      <p className="mt-1 flex items-center gap-1 text-xs text-red-400">
+                        <AlertCircle className="w-3 h-3" /> {errors.name}
+                      </p>
+                    )}
                   </div>
 
                   {/* Phone */}
@@ -206,11 +257,19 @@ const Contact = () => {
                       value={form.phone}
                       onChange={handleChange}
                       placeholder={t.contact.form.placeholder.phone}
-                      required
                       dir="ltr"
-                      className="w-full px-4 py-3 rounded-xl text-sm text-white placeholder-gray-500 outline-none transition-all focus:ring-2 focus:ring-blue-500/50"
-                      style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)' }}
+                      className="w-full px-4 py-3 rounded-xl text-sm text-white placeholder-gray-500 outline-none transition-all focus:ring-2"
+                      style={{
+                        background: 'rgba(255,255,255,0.06)',
+                        border: errors.phone ? '1px solid rgba(239,68,68,0.7)' : '1px solid rgba(255,255,255,0.1)',
+                        '--tw-ring-color': errors.phone ? 'rgba(239,68,68,0.4)' : 'rgba(59,130,246,0.5)',
+                      }}
                     />
+                    {errors.phone && (
+                      <p className="mt-1 flex items-center gap-1 text-xs text-red-400">
+                        <AlertCircle className="w-3 h-3" /> {errors.phone}
+                      </p>
+                    )}
                   </div>
                 </div>
 
@@ -264,27 +323,36 @@ const Contact = () => {
                     value={form.message}
                     onChange={handleChange}
                     placeholder={t.contact.form.placeholder.message}
-                    required
-                    className="w-full px-4 py-3 rounded-xl text-sm text-white placeholder-gray-500 outline-none transition-all focus:ring-2 focus:ring-blue-500/50 resize-none"
-                    style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)' }}
+                    className="w-full px-4 py-3 rounded-xl text-sm text-white placeholder-gray-500 outline-none transition-all focus:ring-2 resize-none"
+                    style={{
+                      background: 'rgba(255,255,255,0.06)',
+                      border: errors.message ? '1px solid rgba(239,68,68,0.7)' : '1px solid rgba(255,255,255,0.1)',
+                      '--tw-ring-color': errors.message ? 'rgba(239,68,68,0.4)' : 'rgba(59,130,246,0.5)',
+                    }}
                   />
+                  {errors.message && (
+                    <p className="mt-1 flex items-center gap-1 text-xs text-red-400">
+                      <AlertCircle className="w-3 h-3" /> {errors.message}
+                    </p>
+                  )}
                 </div>
 
-                {/* Submit */}
+                {/* WhatsApp Submit */}
                 <button
                   type="submit"
-                  className="w-full flex items-center justify-center gap-2 py-4 rounded-xl font-bold text-white transition-all hover:scale-[1.02] hover:shadow-xl"
+                  id="whatsapp-submit-btn"
+                  className="w-full flex items-center justify-center gap-2.5 py-4 rounded-xl font-bold text-white transition-all hover:scale-[1.02] hover:shadow-xl active:scale-[0.98]"
                   style={{
-                    background: 'linear-gradient(135deg, #1e40af 0%, #3b82f6 100%)',
-                    boxShadow: '0 4px 20px rgba(59,130,246,0.35)',
+                    background: 'linear-gradient(135deg, #128C7E 0%, #25D366 60%, #2ecc71 100%)',
+                    boxShadow: '0 4px 24px rgba(37,211,102,0.45)',
                   }}
                 >
-                  <Send className="w-4 h-4" />
-                  {t.contact.form.submit}
+                  <FaWhatsapp className="w-5 h-5" />
+                  Send via WhatsApp
                 </button>
 
                 <p className="text-gray-500 text-xs text-center">
-                  * This is a static contact form for display purposes.
+                  * Clicking the button will open WhatsApp with your details pre-filled.
                 </p>
               </form>
             </div>

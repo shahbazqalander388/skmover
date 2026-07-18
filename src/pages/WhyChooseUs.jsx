@@ -1,9 +1,12 @@
 import { useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
 import AOS from 'aos';
 import Layout from '../components/layout/Layout';
 import WhyChooseUsSection from '../components/sections/WhyChooseUs';
 import Testimonials from '../components/sections/Testimonials';
+import PageSeo from '../seo/PageSeo';
+import JsonLd from '../seo/JsonLd';
+import { PAGES } from '../seo/seoConfig';
+import { whyChooseUsSchemas } from '../seo/schemas';
 
 const WhyChooseUs = () => {
   useEffect(() => {
@@ -11,12 +14,17 @@ const WhyChooseUs = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  const page = PAGES.whyChooseUs;
+
   return (
     <Layout>
-      <Helmet>
-        <title>Why Choose Us | SK Movers - Reliable & Affordable Services</title>
-        <meta name="description" content="Discover why SK Movers is the preferred choice for relocation in Saudi Arabia. We offer professional, safe, and affordable moving services." />
-      </Helmet>
+      <PageSeo
+        title={page.title}
+        description={page.description}
+        path={page.path}
+        keywords={page.keywords}
+      />
+      <JsonLd data={whyChooseUsSchemas()} />
       <div className="pt-24 lg:pt-32">
         <WhyChooseUsSection />
         <Testimonials />

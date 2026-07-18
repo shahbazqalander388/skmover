@@ -14,9 +14,15 @@ import FAQ from '../components/sections/FAQ';
 import Contact from '../components/sections/Contact';
 import ContactCTA from '../components/sections/ContactCTA';
 import LoadingScreen from '../components/ui/LoadingScreen';
+import PageSeo from '../seo/PageSeo';
+import JsonLd from '../seo/JsonLd';
+import { PAGES } from '../seo/seoConfig';
+import { homeSchemas } from '../seo/schemas';
+import { useLanguage } from '../context/LanguageContext';
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const { t } = useLanguage();
 
   useEffect(() => {
     // Initialize AOS animations
@@ -35,8 +41,18 @@ const Home = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  const page = PAGES.home;
+
   return (
     <>
+      <PageSeo
+        title={page.title}
+        description={page.description}
+        path={page.path}
+        keywords={page.keywords}
+      />
+      <JsonLd data={homeSchemas(t.faq?.items || [])} />
+
       <LoadingScreen isLoading={isLoading} />
       <Layout>
         {!isLoading && (

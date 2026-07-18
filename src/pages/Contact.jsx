@@ -1,8 +1,11 @@
 import { useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
 import AOS from 'aos';
 import Layout from '../components/layout/Layout';
 import ContactSection from '../components/sections/Contact';
+import PageSeo from '../seo/PageSeo';
+import JsonLd from '../seo/JsonLd';
+import { PAGES } from '../seo/seoConfig';
+import { contactSchemas } from '../seo/schemas';
 
 const Contact = () => {
   useEffect(() => {
@@ -10,12 +13,17 @@ const Contact = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  const page = PAGES.contact;
+
   return (
     <Layout>
-      <Helmet>
-        <title>Contact Us | SK Movers - Get a Free Moving Quote</title>
-        <meta name="description" content="Contact SK Movers today for a free, no-obligation quote for your relocation needs in Saudi Arabia. We are available 24/7." />
-      </Helmet>
+      <PageSeo
+        title={page.title}
+        description={page.description}
+        path={page.path}
+        keywords={page.keywords}
+      />
+      <JsonLd data={contactSchemas()} />
       <div className="pt-24 lg:pt-32">
         <ContactSection />
       </div>

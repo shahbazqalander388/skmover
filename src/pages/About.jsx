@@ -1,9 +1,12 @@
 import { useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
 import AOS from 'aos';
 import Layout from '../components/layout/Layout';
 import AboutSection from '../components/sections/About';
 import Statistics from '../components/sections/Statistics';
+import PageSeo from '../seo/PageSeo';
+import JsonLd from '../seo/JsonLd';
+import { PAGES } from '../seo/seoConfig';
+import { aboutSchemas } from '../seo/schemas';
 
 const About = () => {
   useEffect(() => {
@@ -11,12 +14,17 @@ const About = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  const page = PAGES.about;
+
   return (
     <Layout>
-      <Helmet>
-        <title>About Us | SK Movers - Professional Relocation Services in KSA</title>
-        <meta name="description" content="Learn more about SK Movers, your trusted partner for professional furniture moving, packing, and relocation services across Saudi Arabia." />
-      </Helmet>
+      <PageSeo
+        title={page.title}
+        description={page.description}
+        path={page.path}
+        keywords={page.keywords}
+      />
+      <JsonLd data={aboutSchemas()} />
       <div className="pt-24 lg:pt-32">
         <AboutSection />
         <Statistics />

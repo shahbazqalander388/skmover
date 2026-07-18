@@ -1,0 +1,26 @@
+{
+  "name": "SK Movers – Professional Moving & Relocation Services",
+  "short_name": "SK Movers",
+  "description": "Professional furniture moving, house shifting, office relocation, packing and storage services across Saudi Arabia.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#1e40af",
+  "orientation": "any",
+  "categories": ["business", "lifestyle"],
+  "lang": "en",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
