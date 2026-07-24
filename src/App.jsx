@@ -4,6 +4,12 @@ import { LanguageProvider } from './context/LanguageContext';
 
 import { lazy, Suspense } from 'react';
 import LoadingScreen from './components/ui/LoadingScreen';
+import usePageTracking from './hooks/usePageTracking';
+
+const RouteTracker = () => {
+  usePageTracking();
+  return null;
+};
 
 // Lazy loaded pages
 const Home = lazy(() => import('./pages/Home'));
@@ -22,6 +28,7 @@ function App() {
     <HelmetProvider>
       <LanguageProvider>
         <BrowserRouter>
+          <RouteTracker />
           <Suspense fallback={<LoadingScreen isLoading={true} />}>
             <Routes>
               <Route path="/" element={<Home />} />
