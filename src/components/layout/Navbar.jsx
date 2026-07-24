@@ -11,6 +11,8 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  const [activeSection, setActiveSection] = useState('hero');
+
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -28,18 +30,76 @@ const Navbar = () => {
   }, [mobileOpen]);
 
   const navLinks = [
-    { label: t.nav.home, path: '/' },
-    { label: t.nav.about, path: '/about' },
-    { label: t.nav.services, path: '/services' },
-    { label: t.nav.serviceAreas, path: '/service-areas' },
-    { label: t.nav.gallery, path: '/gallery' },
-    { label: t.nav.whyUs, path: '/why-choose-us' },
-    { label: t.nav.testimonials, path: '/testimonials' },
-    { label: t.nav.faq, path: '/faq' },
-    { label: t.nav.contact, path: '/contact' },
+    { label: t.nav.home, path: '/', sectionId: 'hero' },
+    { label: t.nav.about, path: '/about', sectionId: 'about' },
+    { label: t.nav.services, path: '/services', sectionId: 'services' },
+    { label: t.nav.serviceAreas, path: '/service-areas', sectionId: 'service-areas' },
+    { label: t.nav.gallery, path: '/gallery', sectionId: 'gallery' },
+    { label: t.nav.whyUs, path: '/why-choose-us', sectionId: 'why-us' },
+    { label: t.nav.testimonials, path: '/testimonials', sectionId: 'testimonials' },
+    { label: t.nav.faq, path: '/faq', sectionId: 'faq' },
+    { label: t.nav.contact, path: '/contact', sectionId: 'contact' },
   ];
 
-  const isActive = (path) => location.pathname === path;
+  // Scroll Spy Observer
+  useEffect(() => {
+    if (location.pathname !== '/') {
+      setActiveSection('');
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      // Find the intersecting entry with the highest intersection ratio
+      // or just pick the first intersecting one.
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    }, {
+      root: null,
+      rootMargin: '-20% 0px -60% 0px', // Trigger active state when section is near top/middle
+      threshold: 0
+    });
+
+    const timeout = setTimeout(() => {
+      navLinks.forEach(link => {
+        if (link.sectionId) {
+          const element = document.getElementById(link.sectionId);
+          if (element) observer.observe(element);
+        }
+      });
+    }, 500);
+
+    return () => {
+      clearTimeout(timeout);
+      observer.disconnect();
+    };
+  }, [location.pathname, t]);
+
+  const handleNavClick = (e, link) => {
+    if (location.pathname === '/') {
+      e.preventDefault();
+      const element = document.getElementById(link.sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+        setActiveSection(link.sectionId);
+      } else if (link.path === '/') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        setActiveSection('hero');
+      }
+      setMobileOpen(false);
+    } else {
+      setMobileOpen(false);
+    }
+  };
+
+  const isActive = (link) => {
+    if (location.pathname === '/') {
+      return activeSection === link.sectionId;
+    }
+    return location.pathname === link.path;
+  };
 
   return (
     <>
@@ -92,15 +152,16 @@ const Navbar = () => {
                 <Link
                   key={link.path}
                   to={link.path}
+                  onClick={(e) => handleNavClick(e, link)}
                   className={`relative px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 whitespace-nowrap ${
-                    isActive(link.path)
+                    isActive(link)
                       ? 'text-blue-400'
                       : 'text-gray-300 hover:text-white hover:bg-white/5'
                   }`}
-                  aria-current={isActive(link.path) ? 'page' : undefined}
+                  aria-current={isActive(link) ? 'page' : undefined}
                 >
                   {link.label}
-                  {isActive(link.path) && (
+                  {isActive(link) && (
                     <motion.div
                       layoutId="activeNav"
                       className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-0.5 rounded-full bg-blue-400"
@@ -201,8 +262,9 @@ const Navbar = () => {
                   >
                     <Link
                       to={link.path}
+                      onClick={(e) => handleNavClick(e, link)}
                       className={`flex items-center gap-3 px-4 py-3.5 rounded-xl text-sm font-medium transition-all ${
-                        isActive(link.path)
+                        isActive(link)
                           ? 'bg-blue-500/15 text-blue-400 border border-blue-500/20'
                           : 'text-gray-300 hover:text-white hover:bg-white/5'
                       }`}
@@ -217,7 +279,7 @@ const Navbar = () => {
               <div className="p-4 space-y-3 border-t border-white/10 mt-4">
                 <a
                   href="tel:+966547469226"
-                  className="flex items-center justify-center gap-2 w-full py-3.5 rounded-xl text-sm font-semibold text-white transition-all"
+                  className="flex items-center justify-center text-center gap-2 w-full py-3.5 rounded-xl text-sm font-semibold text-white transition-all"
                   style={{ background: 'linear-gradient(135deg, #f97316, #fb923c)' }}
                 >
                   <Phone className="w-4 h-4" />

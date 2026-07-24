@@ -11,21 +11,23 @@ const Hero = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Particle floating animation
-      particlesRef.current.forEach((el, i) => {
-        if (el) {
-          gsap.to(el, {
-            y: gsap.utils.random(-30, 30),
-            x: gsap.utils.random(-20, 20),
-            rotation: gsap.utils.random(-15, 15),
-            duration: gsap.utils.random(3, 6),
-            repeat: -1,
-            yoyo: true,
-            ease: 'sine.inOut',
-            delay: i * 0.3,
-          });
-        }
-      });
+      // Defer particle floating animation to reduce Total Blocking Time (TBT)
+      setTimeout(() => {
+        particlesRef.current.forEach((el, i) => {
+          if (el) {
+            gsap.to(el, {
+              y: gsap.utils.random(-30, 30),
+              x: gsap.utils.random(-20, 20),
+              rotation: gsap.utils.random(-15, 15),
+              duration: gsap.utils.random(3, 6),
+              repeat: -1,
+              yoyo: true,
+              ease: 'sine.inOut',
+              delay: i * 0.3,
+            });
+          }
+        });
+      }, 500);
     }, containerRef);
 
     return () => ctx.revert();
@@ -163,7 +165,7 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
           >
-            <a href="tel:+966547469226" className="btn-accent w-full sm:w-auto">
+            <a href="tel:+966547469226" className="btn-accent w-full sm:w-auto justify-center text-center">
               <Phone className="w-5 h-5" />
               {t.hero.callNow}
             </a>
@@ -186,7 +188,7 @@ const Hero = () => {
                 e.preventDefault();
                 document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="btn-outline w-full sm:w-auto"
+              className="btn-outline w-full sm:w-auto justify-center text-center"
             >
               <FileText className="w-5 h-5" />
               {t.hero.freeQuote}

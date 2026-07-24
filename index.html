@@ -59,7 +59,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+Arabic:wght@300;400;500;600;700;800&family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
 
     <!-- AOS CSS (async – non-render-blocking) -->
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
@@ -141,7 +144,58 @@
     </script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <style>
+        .initial-loader {
+          position: fixed; inset: 0; z-index: 9999;
+          display: flex; flex-direction: column; align-items: center; justify-content: center;
+          background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #0f172a 100%);
+        }
+        .initial-loader-glow {
+          position: absolute; inset: 0; opacity: 0.3;
+          background: radial-gradient(ellipse at center, rgba(59,130,246,0.4) 0%, transparent 70%);
+        }
+        .initial-loader-content {
+          position: relative; display: flex; flex-direction: column; align-items: center; gap: 2rem;
+        }
+        .initial-loader-box {
+          width: 5rem; height: 5rem; border-radius: 1rem;
+          background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+          box-shadow: 0 0 40px rgba(59,130,246,0.5);
+          display: flex; align-items: center; justify-content: center;
+          animation: truck-move 1s ease-in-out infinite alternate;
+        }
+        @keyframes truck-move {
+          0% { transform: translateX(-10px); }
+          100% { transform: translateX(10px); }
+        }
+        .initial-loader-text {
+          font-family: system-ui, sans-serif;
+          font-size: 2.25rem; font-weight: 900; color: white; margin: 0; text-align: center;
+        }
+        .initial-loader-text span {
+          background: linear-gradient(135deg, #f97316, #fb923c);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+        .initial-loader-sub {
+          color: #93c5fd; font-size: 0.875rem; font-weight: 500; margin-top: 0.25rem;
+          letter-spacing: 0.1em; text-transform: uppercase; text-align: center; font-family: system-ui, sans-serif;
+        }
+      </style>
+      <div class="initial-loader">
+        <div class="initial-loader-glow"></div>
+        <div class="initial-loader-content">
+          <div class="initial-loader-box">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 18H3c-.6 0-1-.4-1-1V7c0-.6.4-1 1-1h10c.6 0 1 .4 1 1v11"/><path d="M14 9h4l4 4v5c0 .6-.4 1-1 1h-2"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>
+          </div>
+          <div>
+            <h1 class="initial-loader-text">SK <span>Movers</span></h1>
+            <p class="initial-loader-sub">We Move With You</p>
+          </div>
+        </div>
+      </div>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
