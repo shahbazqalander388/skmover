@@ -100,8 +100,15 @@ export const BUSINESS_LD = {
     'Office Relocation Saudi Arabia',
     'Packers and Movers Riyadh',
     'Storage Services Saudi Arabia',
-    'Furniture Assembly',
-    'Loading and Unloading',
+    'Furniture Assembly & Disassembly',
+    'Loading and Unloading Services',
+    'Villa Relocation Saudi Arabia',
+    'نقل اثاث بالرياض',
+    'شركة نقل عفش بالرياض',
+    'نقل عفش جدة',
+    'نقل عفش الدمام',
+    'دينا نقل عفش',
+    'افضل شركة نقل اثاث بالسعودية',
   ],
 };
 
@@ -109,11 +116,11 @@ export const BUSINESS_LD = {
 export const PAGES = {
   home: {
     path: '/',
-    title: 'SK Movers | Best Movers in Saudi Arabia & House Shifting Riyadh',
+    title: 'SK Movers | Best Movers in Saudi Arabia & House Shifting Riyadh | نقل عفش',
     description:
-      'Looking for reliable movers in Saudi Arabia? SK Movers offers expert house shifting in Riyadh, furniture moving, and office relocation services. Get a free quote!',
+      'Looking for reliable movers in Saudi Arabia? SK Movers offers expert house shifting in Riyadh, furniture moving, villa relocation, and office shifting. Call +966 54 746 9226 for a free quote! افضل شركة نقل اثاث بالرياض',
     keywords:
-      'movers in Saudi Arabia, packers and movers Riyadh, house shifting Riyadh, office relocation Saudi Arabia, furniture moving Saudi Arabia, storage services Saudi Arabia',
+      'movers in Saudi Arabia, packers and movers Riyadh, house shifting Riyadh, office relocation Saudi Arabia, furniture moving Saudi Arabia, storage services Saudi Arabia, نقل اثاث بالرياض, شركة نقل عفش بالرياض, نقل عفش جدة, نقل عفش الدمام, دينا نقل عفش, افضل شركة نقل اثاث',
   },
   about: {
     path: '/about',
@@ -121,7 +128,7 @@ export const PAGES = {
     description:
       'Discover SK Movers, your trusted packers and movers in Riyadh. We specialize in safe furniture moving, office relocation, and storage services across Saudi Arabia.',
     keywords:
-      'about SK Movers, packers and movers Riyadh, moving company Saudi Arabia, reliable movers Riyadh, professional movers KSA',
+      'about SK Movers, packers and movers Riyadh, moving company Saudi Arabia, reliable movers Riyadh, professional movers KSA, من نحن شركة نقل اثاث',
   },
   services: {
     path: '/services',

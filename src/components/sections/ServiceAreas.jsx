@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
-import { MapPin, Phone, MessageCircle } from 'lucide-react';
-import { FaCity, FaWater, FaIndustry, FaMosque, FaWarehouse, FaSun } from 'react-icons/fa6';
+import { MapPin, Phone } from 'lucide-react';
+import { FaCity, FaWater, FaIndustry, FaMosque, FaWarehouse, FaSun, FaWhatsapp } from 'react-icons/fa6';
 import { useLanguage } from '../../context/LanguageContext';
+import { trackPhoneClick, trackWhatsAppClick } from '../../utils/gtm';
 
 const cityData = [
   { name: 'Riyadh', ar: 'الرياض', ur: 'ریاض', Icon: FaCity, isCapital: true },
@@ -89,6 +90,7 @@ const ServiceAreas = () => {
                 <div className="flex gap-3">
                   <a
                     href="tel:+966547469226"
+                    onClick={() => trackPhoneClick(`city_card_${city.name}`)}
                     className="flex-1 flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl text-xs font-semibold text-white transition-all hover:scale-105"
                     style={{ background: 'linear-gradient(135deg, #1e40af, #3b82f6)' }}
                     aria-label={`Call for moving services in ${cityName}`}
@@ -98,13 +100,14 @@ const ServiceAreas = () => {
                   </a>
                   <a
                     href="https://wa.me/966547469226"
+                    onClick={() => trackWhatsAppClick(`city_card_${city.name}`, `Moving Inquiry for ${city.name}`)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex-1 flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl text-xs font-semibold text-white transition-all hover:scale-105"
                     style={{ background: 'rgba(37,211,102,0.2)', border: '1px solid rgba(37,211,102,0.4)', color: '#4ade80' }}
                     aria-label={`WhatsApp for moving services in ${cityName}`}
                   >
-                    <MessageCircle className="w-3.5 h-3.5" />
+                    <FaWhatsapp className="w-3.5 h-3.5" />
                     WhatsApp
                   </a>
                 </div>

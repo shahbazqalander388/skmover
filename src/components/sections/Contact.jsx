@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Phone, Mail, MapPin, Contact as ContactIcon, AlertCircle } from 'lucide-react';
 import { FaWhatsapp, FaFacebookF, FaLocationDot } from 'react-icons/fa6';
 import { useLanguage } from '../../context/LanguageContext';
+import { trackQuoteSubmission, trackPhoneClick, trackWhatsAppClick } from '../../utils/gtm';
 
 const Contact = () => {
   const { t, dir } = useLanguage();
@@ -44,6 +45,13 @@ const Contact = () => {
     if (form.message.trim()) lines.push(`Message: ${form.message.trim()}`);
     lines.push('');
     lines.push('Please contact me. Thank you.');
+
+    // Track conversion lead in GTM
+    trackQuoteSubmission({
+      name: form.name.trim(),
+      phone: form.phone.trim(),
+      service: form.service,
+    });
 
     const message = lines.join('\n');
     const waUrl = `https://wa.me/966547469226?text=${encodeURIComponent(message)}`;
@@ -126,6 +134,9 @@ const Contact = () => {
               <a
                 key={label}
                 href={href}
+                onClick={() => {
+                  if (href.startsWith('tel:')) trackPhoneClick('contact_page_card');
+                }}
                 target={href.startsWith('http') ? '_blank' : '_self'}
                 rel={href.startsWith('http') ? 'noopener noreferrer' : ''}
                 className="flex items-center gap-4 p-5 rounded-2xl transition-all hover:-translate-y-1 hover:shadow-lg group"
@@ -151,6 +162,7 @@ const Contact = () => {
             <div className="grid grid-cols-3 gap-3">
               <a
                 href="https://wa.me/966547469226"
+                onClick={() => trackWhatsAppClick('contact_page_social', 'Contact Page Direct Chat')}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex flex-col items-center gap-2 p-4 rounded-2xl text-center transition-all hover:-translate-y-1 text-xs font-medium"

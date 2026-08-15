@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '../../context/LanguageContext';
 import { FaWhatsapp } from 'react-icons/fa6';
+import { trackWhatsAppClick } from '../../utils/gtm';
 
 const WhatsAppButton = () => {
   const { t } = useLanguage();
@@ -9,6 +10,7 @@ const WhatsAppButton = () => {
     <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-2">
       <motion.a
         href="https://wa.me/966547469226"
+        onClick={() => trackWhatsAppClick('floating_button', 'Floating WhatsApp Lead')}
         target="_blank"
         rel="noopener noreferrer"
         whileHover={{ scale: 1.12 }}

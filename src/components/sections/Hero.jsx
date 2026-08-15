@@ -5,6 +5,7 @@ import { Phone, FileText, ChevronDown, Truck, Shield, Clock, Star } from 'lucide
 import { FaWhatsapp } from 'react-icons/fa6';
 import { gsap } from 'gsap';
 import { useLanguage } from '../../context/LanguageContext';
+import { trackPhoneClick, trackWhatsAppClick } from '../../utils/gtm';
 
 const Hero = () => {
   const { t, dir } = useLanguage();
@@ -167,12 +168,17 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
           >
-            <a href="tel:+966547469226" className="btn-accent w-full sm:w-auto justify-center text-center">
+            <a
+              href="tel:+966547469226"
+              onClick={() => trackPhoneClick('hero')}
+              className="btn-accent w-full sm:w-auto justify-center text-center"
+            >
               <Phone className="w-5 h-5" />
               {t.hero.callNow}
             </a>
             <a
               href="https://wa.me/966547469226"
+              onClick={() => trackWhatsAppClick('hero', 'Main Hero Relocation Inquiry')}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl font-semibold text-white transition-all duration-300 hover:scale-105"

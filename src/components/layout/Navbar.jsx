@@ -5,6 +5,7 @@ import { Truck, Phone, Menu, X } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa6';
 import { useLanguage } from '../../context/LanguageContext';
 import LanguageSwitcher from '../ui/LanguageSwitcher';
+import { trackPhoneClick, trackWhatsAppClick } from '../../utils/gtm';
 
 const Navbar = () => {
   const { t, dir } = useLanguage();
@@ -241,6 +242,7 @@ const Navbar = () => {
               <LanguageSwitcher />
               <a
                 href="tel:+966547469226"
+                onClick={() => trackPhoneClick('navbar_desktop')}
                 className="flex items-center gap-2 px-4 py-2.5 text-sm font-semibold text-white rounded-xl transition-all duration-200 hover:scale-105"
                 style={{
                   background: 'linear-gradient(135deg, #f97316 0%, #fb923c 100%)',
@@ -359,6 +361,7 @@ const Navbar = () => {
               <div className="p-4 space-y-3 border-t border-white/10 mt-4">
                 <a
                   href="tel:+966547469226"
+                  onClick={() => trackPhoneClick('navbar_mobile')}
                   className="flex items-center justify-center text-center gap-2 w-full py-3.5 rounded-xl text-sm font-semibold text-white transition-all"
                   style={{ background: 'linear-gradient(135deg, #f97316, #fb923c)' }}
                 >
@@ -367,6 +370,7 @@ const Navbar = () => {
                 </a>
                 <a
                   href="https://wa.me/966547469226"
+                  onClick={() => trackWhatsAppClick('navbar_mobile', 'Mobile Menu Inquiry')}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2 w-full py-3.5 rounded-xl text-sm font-semibold text-white transition-all"

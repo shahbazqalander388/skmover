@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { Phone, FileText, ArrowRight, Truck } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa6';
 import { useLanguage } from '../../context/LanguageContext';
+import { trackPhoneClick, trackWhatsAppClick } from '../../utils/gtm';
 
 const ContactCTA = () => {
   const { t, dir } = useLanguage();
@@ -52,6 +53,7 @@ const ContactCTA = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
               href="tel:+966547469226"
+              onClick={() => trackPhoneClick('contact_cta_banner')}
               className="flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-white transition-all hover:scale-105 hover:-translate-y-1 w-full sm:w-auto justify-center"
               style={{
                 background: 'linear-gradient(135deg, #f97316, #fb923c)',
@@ -63,6 +65,7 @@ const ContactCTA = () => {
             </a>
             <a
               href="https://wa.me/966547469226"
+              onClick={() => trackWhatsAppClick('contact_cta_banner', 'Banner Relocation Inquiry')}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-white transition-all hover:scale-105 hover:-translate-y-1 w-full sm:w-auto justify-center"
