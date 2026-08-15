@@ -12,8 +12,8 @@ import { useLanguage } from '../context/LanguageContext';
 // Lazy load below-the-fold components
 const About = lazy(() => import('../components/sections/About'));
 const Services = lazy(() => import('../components/sections/Services'));
-const WhyChooseUs = lazy(() => import('../components/sections/WhyChooseUs'));
 const Process = lazy(() => import('../components/sections/Process'));
+const WhyChooseUs = lazy(() => import('../components/sections/WhyChooseUs'));
 const ServiceAreas = lazy(() => import('../components/sections/ServiceAreas'));
 const Statistics = lazy(() => import('../components/sections/Statistics'));
 const Gallery = lazy(() => import('../components/sections/Gallery'));
@@ -61,8 +61,8 @@ const Home = () => {
           <Suspense fallback={<div style={{ minHeight: '100vh' }}></div>}>
             <About />
             <Services />
-            <WhyChooseUs />
             <Process />
+            <WhyChooseUs />
             <ServiceAreas />
             <Statistics />
             <Gallery />

@@ -41,8 +41,8 @@ const Navbar = () => {
     { label: t.nav?.about || 'About', path: '/about', sectionId: 'about' },
     { label: t.nav?.services || 'Services', path: '/services', sectionId: 'services' },
     { label: t.nav?.process || 'Process', path: '/process', sectionId: 'process' },
-    { label: t.nav?.serviceAreas || 'Service Areas', path: '/service-areas', sectionId: 'service-areas' },
     { label: t.nav?.whyUs || 'Why Us', path: '/why-choose-us', sectionId: 'why-us' },
+    { label: t.nav?.serviceAreas || 'Service Areas', path: '/service-areas', sectionId: 'service-areas' },
     { label: t.nav?.gallery || 'Gallery', path: '/gallery', sectionId: 'gallery' },
     { label: t.nav?.faq || 'FAQ', path: '/faq', sectionId: 'faq' },
     { label: t.nav?.contact || 'Contact', path: '/contact', sectionId: 'contact' },
@@ -63,9 +63,16 @@ const Navbar = () => {
         return;
       }
 
+      // If scrolled close to bottom of page, activate contact
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 100) {
+        setActiveSection('contact');
+        return;
+      }
+
       const sections = navLinks
         .map((link) => ({ id: link.sectionId, el: document.getElementById(link.sectionId) }))
-        .filter((s) => s.el !== null);
+        .filter((s) => s.el !== null)
+        .sort((a, b) => a.el.offsetTop - b.el.offsetTop);
 
       for (let i = sections.length - 1; i >= 0; i--) {
         const { id, el } = sections[i];
@@ -79,7 +86,7 @@ const Navbar = () => {
     };
 
     window.addEventListener('scroll', handleScrollSpy, { passive: true });
-    const timer = setTimeout(handleScrollSpy, 100);
+    const timer = setTimeout(handleScrollSpy, 150);
 
     return () => {
       window.removeEventListener('scroll', handleScrollSpy);
