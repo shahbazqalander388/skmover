@@ -50,23 +50,34 @@ const Navbar = () => {
     { label: t.nav?.contact || 'Contact', path: '/contact', sectionId: 'contact' },
   ];
 
-  // ScrollSpy observer on Home route
+  // ScrollSpy observer on Home route with dynamic URL address bar synchronization
   useEffect(() => {
     if (!isHomeRoute) {
       setActiveSection('');
       return;
     }
 
+    let lastUpdatedPath = window.location.pathname;
+
+    const updateUrl = (newPath) => {
+      if (window.location.pathname !== newPath && lastUpdatedPath !== newPath) {
+        lastUpdatedPath = newPath;
+        window.history.replaceState(null, '', newPath);
+      }
+    };
+
     const handleScrollSpy = () => {
       // Top of page
       if (window.scrollY < 120) {
         setActiveSection('hero');
+        updateUrl('/home');
         return;
       }
 
       // Bottom of page
       if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 100) {
         setActiveSection('contact');
+        updateUrl('/contact');
         return;
       }
 
@@ -79,6 +90,7 @@ const Navbar = () => {
           if (!el) return null;
           return {
             id: link.sectionId,
+            path: link.path,
             top: el.offsetTop,
           };
         })
@@ -88,11 +100,13 @@ const Navbar = () => {
       for (let i = sections.length - 1; i >= 0; i--) {
         if (scrollTrigger >= sections[i].top) {
           setActiveSection(sections[i].id);
+          updateUrl(sections[i].path);
           return;
         }
       }
 
       setActiveSection('hero');
+      updateUrl('/home');
     };
 
     window.addEventListener('scroll', handleScrollSpy, { passive: true });
@@ -107,26 +121,21 @@ const Navbar = () => {
   const handleNavClick = (e, link) => {
     setMobileOpen(false);
 
-    if (link.path === '/home' || link.path === '/' || link.sectionId === 'hero') {
-      if (isHomeRoute) {
-        e.preventDefault();
+    if (isHomeRoute) {
+      e.preventDefault();
+      if (link.path === '/home' || link.path === '/' || link.sectionId === 'hero') {
         window.scrollTo({ top: 0, behavior: 'smooth' });
         setActiveSection('hero');
         window.history.pushState(null, '', '/home');
       } else {
-        navigate('/home');
-      }
-      return;
-    }
-
-    if (isHomeRoute) {
-      e.preventDefault();
-      const element = document.getElementById(link.sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-        setActiveSection(link.sectionId);
-      } else {
-        navigate(link.path);
+        const element = document.getElementById(link.sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+          setActiveSection(link.sectionId);
+          window.history.pushState(null, '', link.path);
+        } else {
+          navigate(link.path);
+        }
       }
     }
   };
