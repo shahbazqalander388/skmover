@@ -4,8 +4,6 @@ import { Layers } from 'lucide-react';
 import Layout from '../components/layout/Layout';
 import PageHeader from '../components/ui/PageHeader';
 import ServicesSection from '../components/sections/Services';
-import Process from '../components/sections/Process';
-import ServiceAreasSection from '../components/sections/ServiceAreas';
 import ContactCTA from '../components/sections/ContactCTA';
 import PageSeo from '../seo/PageSeo';
 import JsonLd from '../seo/JsonLd';
@@ -44,8 +42,6 @@ const Services = () => {
 
       <div>
         <ServicesSection />
-        <Process />
-        <ServiceAreasSection />
         <ContactCTA />
       </div>
     </Layout>

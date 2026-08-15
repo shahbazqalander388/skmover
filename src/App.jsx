@@ -20,7 +20,6 @@ const Process = lazy(() => import('./pages/Process'));
 const ServiceAreas = lazy(() => import('./pages/ServiceAreas'));
 const Gallery = lazy(() => import('./pages/Gallery'));
 const WhyChooseUs = lazy(() => import('./pages/WhyChooseUs'));
-const Testimonials = lazy(() => import('./pages/Testimonials'));
 const FAQ = lazy(() => import('./pages/FAQ'));
 const Contact = lazy(() => import('./pages/Contact'));
 const NotFound = lazy(() => import('./pages/NotFound'));
@@ -39,9 +38,8 @@ function App() {
               <Route path="/services" element={<Services />} />
               <Route path="/process" element={<Process />} />
               <Route path="/service-areas" element={<ServiceAreas />} />
-              <Route path="/gallery" element={<Gallery />} />
               <Route path="/why-choose-us" element={<WhyChooseUs />} />
-              <Route path="/testimonials" element={<Testimonials />} />
+              <Route path="/gallery" element={<Gallery />} />
               <Route path="/faq" element={<FAQ />} />
               <Route path="/contact" element={<Contact />} />
               {/* 404 fallback */}

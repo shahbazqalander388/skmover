@@ -17,7 +17,6 @@ const Process = lazy(() => import('../components/sections/Process'));
 const ServiceAreas = lazy(() => import('../components/sections/ServiceAreas'));
 const Statistics = lazy(() => import('../components/sections/Statistics'));
 const Gallery = lazy(() => import('../components/sections/Gallery'));
-const Testimonials = lazy(() => import('../components/sections/Testimonials'));
 const FAQ = lazy(() => import('../components/sections/FAQ'));
 const Contact = lazy(() => import('../components/sections/Contact'));
 const ContactCTA = lazy(() => import('../components/sections/ContactCTA'));
@@ -67,7 +66,6 @@ const Home = () => {
             <ServiceAreas />
             <Statistics />
             <Gallery />
-            <Testimonials />
             <FAQ />
             <ContactCTA />
             <Contact />

@@ -4,7 +4,6 @@ import { Mail } from 'lucide-react';
 import Layout from '../components/layout/Layout';
 import PageHeader from '../components/ui/PageHeader';
 import ContactSection from '../components/sections/Contact';
-import ServiceAreasSection from '../components/sections/ServiceAreas';
 import PageSeo from '../seo/PageSeo';
 import JsonLd from '../seo/JsonLd';
 import { PAGES } from '../seo/seoConfig';
@@ -42,7 +41,6 @@ const Contact = () => {
 
       <div>
         <ContactSection />
-        <ServiceAreasSection />
       </div>
     </Layout>
   );

@@ -5,7 +5,6 @@ import Layout from '../components/layout/Layout';
 import PageHeader from '../components/ui/PageHeader';
 import AboutSection from '../components/sections/About';
 import Statistics from '../components/sections/Statistics';
-import WhyChooseUsSection from '../components/sections/WhyChooseUs';
 import ContactCTA from '../components/sections/ContactCTA';
 import PageSeo from '../seo/PageSeo';
 import JsonLd from '../seo/JsonLd';
@@ -45,7 +44,6 @@ const About = () => {
       <div>
         <AboutSection />
         <Statistics />
-        <WhyChooseUsSection />
         <ContactCTA />
       </div>
     </Layout>

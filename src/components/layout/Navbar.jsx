@@ -42,9 +42,8 @@ const Navbar = () => {
     { label: t.nav?.services || 'Services', path: '/services', sectionId: 'services' },
     { label: t.nav?.process || 'Process', path: '/process', sectionId: 'process' },
     { label: t.nav?.serviceAreas || 'Service Areas', path: '/service-areas', sectionId: 'service-areas' },
-    { label: t.nav?.gallery || 'Gallery', path: '/gallery', sectionId: 'gallery' },
     { label: t.nav?.whyUs || 'Why Us', path: '/why-choose-us', sectionId: 'why-us' },
-    { label: t.nav?.testimonials || 'Testimonials', path: '/testimonials', sectionId: 'testimonials' },
+    { label: t.nav?.gallery || 'Gallery', path: '/gallery', sectionId: 'gallery' },
     { label: t.nav?.faq || 'FAQ', path: '/faq', sectionId: 'faq' },
     { label: t.nav?.contact || 'Contact', path: '/contact', sectionId: 'contact' },
   ];

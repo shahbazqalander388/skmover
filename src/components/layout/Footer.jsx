@@ -14,7 +14,6 @@ const Footer = () => {
     { label: t.nav?.serviceAreas || 'Service Areas', path: '/service-areas' },
     { label: t.nav?.whyUs || 'Why Us', path: '/why-choose-us' },
     { label: t.nav?.gallery || 'Gallery', path: '/gallery' },
-    { label: t.nav?.testimonials || 'Testimonials', path: '/testimonials' },
     { label: t.nav?.faq || 'FAQ', path: '/faq' },
     { label: t.nav?.contact || 'Contact', path: '/contact' },
   ];

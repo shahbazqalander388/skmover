@@ -4,7 +4,6 @@ import { Workflow } from 'lucide-react';
 import Layout from '../components/layout/Layout';
 import PageHeader from '../components/ui/PageHeader';
 import ProcessSection from '../components/sections/Process';
-import WhyChooseUsSection from '../components/sections/WhyChooseUs';
 import ContactCTA from '../components/sections/ContactCTA';
 import PageSeo from '../seo/PageSeo';
 import JsonLd from '../seo/JsonLd';
@@ -43,7 +42,6 @@ const Process = () => {
 
       <div>
         <ProcessSection />
-        <WhyChooseUsSection />
         <ContactCTA />
       </div>
     </Layout>

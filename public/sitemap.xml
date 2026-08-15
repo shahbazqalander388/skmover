@@ -72,16 +72,6 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://skmover.vercel.app/why-choose-us" />
   </url>
   <url>
-    <loc>https://skmover.vercel.app/testimonials</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://skmover.vercel.app/testimonials" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://skmover.vercel.app/testimonials" />
-    <xhtml:link rel="alternate" hreflang="ur" href="https://skmover.vercel.app/testimonials" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://skmover.vercel.app/testimonials" />
-  </url>
-  <url>
     <loc>https://skmover.vercel.app/faq</loc>
     <lastmod>2026-07-18</lastmod>
     <changefreq>monthly</changefreq>
