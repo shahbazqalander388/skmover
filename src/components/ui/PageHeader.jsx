@@ -54,7 +54,7 @@ const PageHeader = ({
           aria-label="Breadcrumb"
         >
           <Link
-            to="/"
+            to="/home"
             className="flex items-center gap-1 hover:text-white transition-colors"
           >
             <Home className="w-3.5 h-3.5" />

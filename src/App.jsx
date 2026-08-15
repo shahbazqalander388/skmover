@@ -34,6 +34,7 @@ function App() {
           <Suspense fallback={<LoadingScreen isLoading={true} />}>
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/home" element={<Home />} />
               <Route path="/about" element={<About />} />
               <Route path="/services" element={<Services />} />
               <Route path="/process" element={<Process />} />

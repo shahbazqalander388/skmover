@@ -7,7 +7,7 @@ const Footer = () => {
   const { t, dir } = useLanguage();
 
   const quickLinks = [
-    { label: t.nav?.home || 'Home', path: '/' },
+    { label: t.nav?.home || 'Home', path: '/home' },
     { label: t.nav?.about || 'About', path: '/about' },
     { label: t.nav?.services || 'Services', path: '/services' },
     { label: t.nav?.process || 'Process', path: '/process' },

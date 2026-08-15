@@ -20,6 +20,7 @@ const Navbar = () => {
   };
 
   const currentPath = normalizePath(location.pathname);
+  const isHomeRoute = currentPath === '/' || currentPath === '/home';
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -38,7 +39,7 @@ const Navbar = () => {
   }, [mobileOpen]);
 
   const navLinks = [
-    { label: t.nav?.home || 'Home', path: '/', sectionId: 'hero' },
+    { label: t.nav?.home || 'Home', path: '/home', sectionId: 'hero' },
     { label: t.nav?.about || 'About', path: '/about', sectionId: 'about' },
     { label: t.nav?.services || 'Services', path: '/services', sectionId: 'services' },
     { label: t.nav?.process || 'Process', path: '/process', sectionId: 'process' },
@@ -51,7 +52,7 @@ const Navbar = () => {
 
   // ScrollSpy observer on Home route
   useEffect(() => {
-    if (currentPath !== '/') {
+    if (!isHomeRoute) {
       setActiveSection('');
       return;
     }
@@ -101,31 +102,40 @@ const Navbar = () => {
       window.removeEventListener('scroll', handleScrollSpy);
       clearTimeout(timer);
     };
-  }, [currentPath, t]);
+  }, [isHomeRoute, t]);
 
   const handleNavClick = (e, link) => {
     setMobileOpen(false);
 
-    if (currentPath === '/') {
-      e.preventDefault();
-      if (link.path === '/' || link.sectionId === 'hero') {
+    if (link.path === '/home' || link.path === '/' || link.sectionId === 'hero') {
+      if (isHomeRoute) {
+        e.preventDefault();
         window.scrollTo({ top: 0, behavior: 'smooth' });
         setActiveSection('hero');
+        window.history.pushState(null, '', '/home');
       } else {
-        const element = document.getElementById(link.sectionId);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-          setActiveSection(link.sectionId);
-        } else {
-          navigate(link.path);
-        }
+        navigate('/home');
+      }
+      return;
+    }
+
+    if (isHomeRoute) {
+      e.preventDefault();
+      const element = document.getElementById(link.sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+        setActiveSection(link.sectionId);
+      } else {
+        navigate(link.path);
       }
     }
-    // On subpages, clicking normal links navigates to link.path
   };
 
   const isActive = (link) => {
-    if (currentPath === '/') {
+    if (isHomeRoute) {
+      if (link.path === '/home' || link.path === '/') {
+        return activeSection === 'hero';
+      }
       return activeSection === link.sectionId;
     }
     return currentPath === normalizePath(link.path);
@@ -148,12 +158,13 @@ const Navbar = () => {
           <div className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo */}
             <Link
-              to="/"
+              to="/home"
               onClick={(e) => {
-                if (currentPath === '/') {
+                if (isHomeRoute) {
                   e.preventDefault();
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                   setActiveSection('hero');
+                  window.history.pushState(null, '', '/home');
                 }
               }}
               className="flex items-center gap-3 group flex-shrink-0"
@@ -275,13 +286,14 @@ const Navbar = () => {
               {/* Mobile menu header */}
               <div className="flex items-center justify-between p-6 border-b border-white/10">
                 <Link
-                  to="/"
+                  to="/home"
                   onClick={(e) => {
                     setMobileOpen(false);
-                    if (currentPath === '/') {
+                    if (isHomeRoute) {
                       e.preventDefault();
                       window.scrollTo({ top: 0, behavior: 'smooth' });
                       setActiveSection('hero');
+                      window.history.pushState(null, '', '/home');
                     }
                   }}
                   className="flex items-center gap-3 group"
