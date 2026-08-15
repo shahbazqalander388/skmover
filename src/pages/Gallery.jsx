@@ -4,7 +4,7 @@ import { Camera } from 'lucide-react';
 import Layout from '../components/layout/Layout';
 import PageHeader from '../components/ui/PageHeader';
 import GallerySection from '../components/sections/Gallery';
-import Testimonials from '../components/sections/Testimonials';
+import Statistics from '../components/sections/Statistics';
 import ContactCTA from '../components/sections/ContactCTA';
 import PageSeo from '../seo/PageSeo';
 import JsonLd from '../seo/JsonLd';
@@ -43,7 +43,7 @@ const Gallery = () => {
 
       <div>
         <GallerySection />
-        <Testimonials />
+        <Statistics />
         <ContactCTA />
       </div>
     </Layout>

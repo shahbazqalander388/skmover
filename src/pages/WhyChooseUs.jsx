@@ -5,7 +5,7 @@ import Layout from '../components/layout/Layout';
 import PageHeader from '../components/ui/PageHeader';
 import WhyChooseUsSection from '../components/sections/WhyChooseUs';
 import Statistics from '../components/sections/Statistics';
-import Testimonials from '../components/sections/Testimonials';
+import GallerySection from '../components/sections/Gallery';
 import ContactCTA from '../components/sections/ContactCTA';
 import PageSeo from '../seo/PageSeo';
 import JsonLd from '../seo/JsonLd';
@@ -45,7 +45,7 @@ const WhyChooseUs = () => {
       <div>
         <WhyChooseUsSection />
         <Statistics />
-        <Testimonials />
+        <GallerySection />
         <ContactCTA />
       </div>
     </Layout>
