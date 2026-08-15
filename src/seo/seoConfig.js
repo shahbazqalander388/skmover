@@ -6,7 +6,7 @@
 //    reference derives from this one constant.
 // ============================================================
 
-export const BASE_URL      = 'https://skmover.vercel.app';
+export const BASE_URL      = 'https://www.skmovers.business';
 export const SITE_NAME     = 'SK Movers';
 export const PHONE         = '+966547469226';
 export const PHONE_DISPLAY = '+966 54 746 9226';

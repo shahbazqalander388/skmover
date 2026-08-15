@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /404
 
-Sitemap: https://skmover.vercel.app/sitemap.xml
+Sitemap: https://www.skmovers.business/sitemap.xml
