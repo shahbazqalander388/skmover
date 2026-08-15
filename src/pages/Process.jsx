@@ -1,19 +1,18 @@
 import { useEffect } from 'react';
 import AOS from 'aos';
-import { Award } from 'lucide-react';
+import { Workflow } from 'lucide-react';
 import Layout from '../components/layout/Layout';
 import PageHeader from '../components/ui/PageHeader';
-import AboutSection from '../components/sections/About';
-import Statistics from '../components/sections/Statistics';
+import ProcessSection from '../components/sections/Process';
 import WhyChooseUsSection from '../components/sections/WhyChooseUs';
 import ContactCTA from '../components/sections/ContactCTA';
 import PageSeo from '../seo/PageSeo';
 import JsonLd from '../seo/JsonLd';
 import { PAGES } from '../seo/seoConfig';
-import { aboutSchemas } from '../seo/schemas';
+import { processSchemas } from '../seo/schemas';
 import { useLanguage } from '../context/LanguageContext';
 
-const About = () => {
+const Process = () => {
   const { t } = useLanguage();
 
   useEffect(() => {
@@ -21,7 +20,7 @@ const About = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const page = PAGES.about;
+  const page = PAGES.process;
 
   return (
     <Layout>
@@ -31,20 +30,19 @@ const About = () => {
         path={page.path}
         keywords={page.keywords}
       />
-      <JsonLd data={aboutSchemas()} />
+      <JsonLd data={processSchemas()} />
 
       <PageHeader
-        badge={t.about?.badge || 'About SK Movers'}
-        badgeIcon={Award}
-        title={t.about?.title || 'Your Trusted Relocation'}
-        titleHighlight={t.about?.titleHighlight || 'Partner'}
-        subtitle={t.about?.description1 || 'Professional furniture moving, house shifting, and office relocation services across Saudi Arabia.'}
-        breadcrumbs={[{ label: t.nav?.about || 'About Us', path: '/about' }]}
+        badge={t.process?.badge || 'How We Work'}
+        badgeIcon={Workflow}
+        title={t.process?.title || 'Our Simple'}
+        titleHighlight={t.process?.titleHighlight || 'Moving Process'}
+        subtitle={t.process?.subtitle || 'We make relocating easy with our streamlined 4-step process across Saudi Arabia.'}
+        breadcrumbs={[{ label: t.nav?.process || 'How It Works', path: '/process' }]}
       />
 
       <div>
-        <AboutSection />
-        <Statistics />
+        <ProcessSection />
         <WhyChooseUsSection />
         <ContactCTA />
       </div>
@@ -52,4 +50,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default Process;

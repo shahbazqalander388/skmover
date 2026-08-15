@@ -6,6 +6,7 @@ const ar = {
     home: 'الرئيسية',
     about: 'من نحن',
     services: 'خدماتنا',
+    process: 'طريقة العمل',
     serviceAreas: 'مناطق الخدمة',
     gallery: 'معرض الصور',
     whyUs: 'لماذا تختارنا',

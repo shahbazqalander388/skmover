@@ -8,6 +8,7 @@ const en = {
     home: 'Home',
     about: 'About',
     services: 'Services',
+    process: 'How It Works',
     serviceAreas: 'Service Areas',
     gallery: 'Gallery',
     whyUs: 'Why Choose Us',

@@ -7,12 +7,16 @@ const Footer = () => {
   const { t, dir } = useLanguage();
 
   const quickLinks = [
-    { label: t.nav.home, path: '/' },
-    { label: t.nav.about, path: '/about' },
-    { label: t.nav.services, path: '/services' },
-    { label: t.nav.gallery, path: '/gallery' },
-    { label: t.nav.contact, path: '/contact' },
-    { label: t.nav.faq, path: '/faq' },
+    { label: t.nav?.home || 'Home', path: '/' },
+    { label: t.nav?.about || 'About', path: '/about' },
+    { label: t.nav?.services || 'Services', path: '/services' },
+    { label: t.nav?.process || 'Process', path: '/process' },
+    { label: t.nav?.serviceAreas || 'Service Areas', path: '/service-areas' },
+    { label: t.nav?.whyUs || 'Why Us', path: '/why-choose-us' },
+    { label: t.nav?.gallery || 'Gallery', path: '/gallery' },
+    { label: t.nav?.testimonials || 'Testimonials', path: '/testimonials' },
+    { label: t.nav?.faq || 'FAQ', path: '/faq' },
+    { label: t.nav?.contact || 'Contact', path: '/contact' },
   ];
 
   const services = [

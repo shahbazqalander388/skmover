@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Phone, MessageCircle, FileText, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 
@@ -71,14 +72,14 @@ const ContactCTA = () => {
               <MessageCircle className="w-5 h-5" />
               {t.cta.whatsapp}
             </a>
-            <a
-              href="/contact"
+            <Link
+              to="/contact"
               className="flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-white transition-all hover:scale-105 hover:-translate-y-1 border-2 border-white/30 hover:border-white/60 hover:bg-white/10 w-full sm:w-auto justify-center"
             >
               <FileText className="w-5 h-5" />
               {t.cta.freeQuote}
               <ArrowRight className="w-4 h-4" />
-            </a>
+            </Link>
           </div>
         </div>
       </div>

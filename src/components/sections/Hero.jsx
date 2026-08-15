@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Phone, MessageCircle, FileText, ChevronDown, Truck, Shield, Clock, Star } from 'lucide-react';
 import { gsap } from 'gsap';
@@ -182,17 +183,13 @@ const Hero = () => {
               <MessageCircle className="w-5 h-5" />
               {t.hero.whatsapp}
             </a>
-            <a
-              href="#contact"
-              onClick={(e) => {
-                e.preventDefault();
-                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="btn-outline w-full sm:w-auto justify-center text-center"
+            <Link
+              to="/contact"
+              className="btn-outline w-full sm:w-auto justify-center text-center inline-flex items-center gap-2"
             >
               <FileText className="w-5 h-5" />
               {t.hero.freeQuote}
-            </a>
+            </Link>
           </motion.div>
 
           {/* Trust badges */}

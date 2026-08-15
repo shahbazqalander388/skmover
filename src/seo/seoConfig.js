@@ -131,6 +131,14 @@ export const PAGES = {
     keywords:
       'house shifting Riyadh, furniture moving Saudi Arabia, office relocation Saudi Arabia, storage services Saudi Arabia, packing services Riyadh',
   },
+  process: {
+    path: '/process',
+    title: 'Our Moving Process | How SK Movers Relocates in Saudi Arabia',
+    description:
+      'Discover SK Movers streamlined 4-step moving process: Consultation, Planning, Safe Packing & Loading, and On-Time Delivery across Saudi Arabia.',
+    keywords:
+      'moving process Saudi Arabia, how to move house Riyadh, relocation workflow, professional movers process KSA',
+  },
   serviceAreas: {
     path: '/service-areas',
     title: 'Service Areas | Movers in Saudi Arabia, Riyadh, Jeddah, Dammam',

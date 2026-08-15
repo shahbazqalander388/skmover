@@ -10,8 +10,15 @@ const Navbar = () => {
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-
   const [activeSection, setActiveSection] = useState('hero');
+
+  const normalizePath = (p) => {
+    if (!p) return '/';
+    const clean = p.split('?')[0].split('#')[0];
+    return clean.length > 1 && clean.endsWith('/') ? clean.slice(0, -1) : clean;
+  };
+
+  const currentPath = normalizePath(location.pathname);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -21,7 +28,7 @@ const Navbar = () => {
 
   useEffect(() => {
     setMobileOpen(false);
-  }, [location]);
+  }, [location.pathname]);
 
   // Prevent body scroll when mobile menu open
   useEffect(() => {
@@ -30,56 +37,61 @@ const Navbar = () => {
   }, [mobileOpen]);
 
   const navLinks = [
-    { label: t.nav.home, path: '/', sectionId: 'hero' },
-    { label: t.nav.about, path: '/about', sectionId: 'about' },
-    { label: t.nav.services, path: '/services', sectionId: 'services' },
-    { label: t.nav.serviceAreas, path: '/service-areas', sectionId: 'service-areas' },
-    { label: t.nav.gallery, path: '/gallery', sectionId: 'gallery' },
-    { label: t.nav.whyUs, path: '/why-choose-us', sectionId: 'why-us' },
-    { label: t.nav.testimonials, path: '/testimonials', sectionId: 'testimonials' },
-    { label: t.nav.faq, path: '/faq', sectionId: 'faq' },
-    { label: t.nav.contact, path: '/contact', sectionId: 'contact' },
+    { label: t.nav?.home || 'Home', path: '/', sectionId: 'hero' },
+    { label: t.nav?.about || 'About', path: '/about', sectionId: 'about' },
+    { label: t.nav?.services || 'Services', path: '/services', sectionId: 'services' },
+    { label: t.nav?.process || 'Process', path: '/process', sectionId: 'process' },
+    { label: t.nav?.serviceAreas || 'Service Areas', path: '/service-areas', sectionId: 'service-areas' },
+    { label: t.nav?.gallery || 'Gallery', path: '/gallery', sectionId: 'gallery' },
+    { label: t.nav?.whyUs || 'Why Us', path: '/why-choose-us', sectionId: 'why-us' },
+    { label: t.nav?.testimonials || 'Testimonials', path: '/testimonials', sectionId: 'testimonials' },
+    { label: t.nav?.faq || 'FAQ', path: '/faq', sectionId: 'faq' },
+    { label: t.nav?.contact || 'Contact', path: '/contact', sectionId: 'contact' },
   ];
 
-  // Scroll Spy Observer
+  // ScrollSpy observer on Home route
   useEffect(() => {
-    if (location.pathname !== '/') {
+    if (currentPath !== '/') {
       setActiveSection('');
       return;
     }
 
-    const observer = new IntersectionObserver((entries) => {
-      // Find the intersecting entry with the highest intersection ratio
-      // or just pick the first intersecting one.
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id);
-        }
-      });
-    }, {
-      root: null,
-      rootMargin: '-20% 0px -60% 0px', // Trigger active state when section is near top/middle
-      threshold: 0
-    });
+    const handleScrollSpy = () => {
+      const scrollPosition = window.scrollY + 200;
 
-    const timeout = setTimeout(() => {
-      navLinks.forEach(link => {
-        if (link.sectionId) {
-          const element = document.getElementById(link.sectionId);
-          if (element) observer.observe(element);
+      if (window.scrollY < 100) {
+        setActiveSection('hero');
+        return;
+      }
+
+      const sections = navLinks
+        .map((link) => ({ id: link.sectionId, el: document.getElementById(link.sectionId) }))
+        .filter((s) => s.el !== null);
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const { id, el } = sections[i];
+        if (el && scrollPosition >= el.offsetTop) {
+          setActiveSection(id);
+          return;
         }
-      });
-    }, 500);
+      }
+
+      setActiveSection('hero');
+    };
+
+    window.addEventListener('scroll', handleScrollSpy, { passive: true });
+    const timer = setTimeout(handleScrollSpy, 100);
 
     return () => {
-      clearTimeout(timeout);
-      observer.disconnect();
+      window.removeEventListener('scroll', handleScrollSpy);
+      clearTimeout(timer);
     };
-  }, [location.pathname, t]);
+  }, [currentPath, t]);
 
   const handleNavClick = (e, link) => {
-    if (location.pathname === '/') {
+    if (currentPath === '/') {
       e.preventDefault();
+      setMobileOpen(false);
       const element = document.getElementById(link.sectionId);
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
@@ -88,17 +100,16 @@ const Navbar = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
         setActiveSection('hero');
       }
-      setMobileOpen(false);
     } else {
       setMobileOpen(false);
     }
   };
 
   const isActive = (link) => {
-    if (location.pathname === '/') {
+    if (currentPath === '/') {
       return activeSection === link.sectionId;
     }
-    return location.pathname === link.path;
+    return currentPath === normalizePath(link.path);
   };
 
   return (
@@ -108,7 +119,7 @@ const Navbar = () => {
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-          scrolled ? 'navbar-scrolled' : 'bg-transparent'
+          scrolled ? 'navbar-scrolled' : 'bg-slate-950/70 backdrop-blur-md border-b border-white/5'
         }`}
         dir={dir}
         role="navigation"
@@ -148,27 +159,30 @@ const Navbar = () => {
 
             {/* Desktop Nav Links */}
             <div className="hidden xl:flex items-center gap-1">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  onClick={(e) => handleNavClick(e, link)}
-                  className={`relative px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 whitespace-nowrap ${
-                    isActive(link)
-                      ? 'text-blue-400'
-                      : 'text-gray-300 hover:text-white hover:bg-white/5'
-                  }`}
-                  aria-current={isActive(link) ? 'page' : undefined}
-                >
-                  {link.label}
-                  {isActive(link) && (
-                    <motion.div
-                      layoutId="activeNav"
-                      className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-0.5 rounded-full bg-blue-400"
-                    />
-                  )}
-                </Link>
-              ))}
+              {navLinks.map((link) => {
+                const active = isActive(link);
+                return (
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    onClick={(e) => handleNavClick(e, link)}
+                    className={`relative px-3 py-2 text-xs 2xl:text-sm font-medium rounded-lg transition-all duration-200 whitespace-nowrap ${
+                      active
+                        ? 'text-blue-400 bg-blue-500/10 font-semibold'
+                        : 'text-gray-300 hover:text-white hover:bg-white/5'
+                    }`}
+                    aria-current={active ? 'page' : undefined}
+                  >
+                    {link.label}
+                    {active && (
+                      <motion.div
+                        layoutId="activeNav"
+                        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-0.5 rounded-full bg-blue-400"
+                      />
+                    )}
+                  </Link>
+                );
+              })}
             </div>
 
             {/* Desktop Right Section */}
@@ -183,7 +197,7 @@ const Navbar = () => {
                 }}
               >
                 <Phone className="w-4 h-4" />
-                {t.nav.callNow}
+                {t.nav?.callNow || 'Call Now'}
               </a>
             </div>
 
@@ -230,7 +244,7 @@ const Navbar = () => {
             >
               {/* Mobile menu header */}
               <div className="flex items-center justify-between p-6 border-b border-white/10">
-                <Link to="/" className="flex items-center gap-3 group">
+                <Link to="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 group">
                   <div
                     className="w-9 h-9 rounded-xl flex items-center justify-center"
                     style={{ background: 'linear-gradient(135deg, #1e40af, #3b82f6)' }}
@@ -253,26 +267,29 @@ const Navbar = () => {
 
               {/* Mobile nav links */}
               <nav className="p-4 space-y-1">
-                {navLinks.map((link, i) => (
-                  <motion.div
-                    key={link.path}
-                    initial={{ opacity: 0, x: dir === 'rtl' ? -20 : 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.05 }}
-                  >
-                    <Link
-                      to={link.path}
-                      onClick={(e) => handleNavClick(e, link)}
-                      className={`flex items-center gap-3 px-4 py-3.5 rounded-xl text-sm font-medium transition-all ${
-                        isActive(link)
-                          ? 'bg-blue-500/15 text-blue-400 border border-blue-500/20'
-                          : 'text-gray-300 hover:text-white hover:bg-white/5'
-                      }`}
+                {navLinks.map((link, i) => {
+                  const active = isActive(link);
+                  return (
+                    <motion.div
+                      key={link.path}
+                      initial={{ opacity: 0, x: dir === 'rtl' ? -20 : 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.04 }}
                     >
-                      {link.label}
-                    </Link>
-                  </motion.div>
-                ))}
+                      <Link
+                        to={link.path}
+                        onClick={(e) => handleNavClick(e, link)}
+                        className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
+                          active
+                            ? 'bg-blue-500/15 text-blue-400 border border-blue-500/20 font-semibold'
+                            : 'text-gray-300 hover:text-white hover:bg-white/5'
+                        }`}
+                      >
+                        {link.label}
+                      </Link>
+                    </motion.div>
+                  );
+                })}
               </nav>
 
               {/* Mobile CTA */}
@@ -283,7 +300,7 @@ const Navbar = () => {
                   style={{ background: 'linear-gradient(135deg, #f97316, #fb923c)' }}
                 >
                   <Phone className="w-4 h-4" />
-                  {t.nav.callNow}
+                  {t.nav?.callNow || 'Call Now'}
                 </a>
                 <a
                   href="https://wa.me/966547469226"

@@ -6,6 +6,7 @@ const ur = {
     home: 'ہوم',
     about: 'ہمارے بارے میں',
     services: 'خدمات',
+    process: 'طریقہ کار',
     serviceAreas: 'سروس علاقے',
     gallery: 'گیلری',
     whyUs: 'ہمیں کیوں چنیں',

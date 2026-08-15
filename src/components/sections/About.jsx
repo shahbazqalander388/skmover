@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { CheckCircle2, Users, MapPin, Award } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 
@@ -135,17 +136,12 @@ const About = () => {
               ))}
             </div>
 
-            <a
-              href="/about"
+            <Link
+              to="/about"
               className="btn-primary inline-flex"
-              onClick={(e) => {
-                e.preventDefault();
-                window.scrollTo({ top: 0 });
-                window.location.href = '/about';
-              }}
             >
               {t.about.learnMore}
-            </a>
+            </Link>
           </div>
         </div>
       </div>

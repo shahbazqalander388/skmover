@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
   Sofa, Home, Building, Package, PackageOpen, Wrench,
@@ -114,10 +115,10 @@ const Services = () => {
 
         {/* View All CTA */}
         <div className="text-center mt-12" data-aos="fade-up">
-          <a href="/services" className="btn-primary">
+          <Link to="/services" className="btn-primary">
             {t.services.viewAll}
             <ArrowRight className="w-4 h-4" />
-          </a>
+          </Link>
         </div>
       </div>
     </section>

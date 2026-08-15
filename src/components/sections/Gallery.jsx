@@ -2,31 +2,23 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react';
 
-// Automatically load all images from the public/gallery folder.
-// Using { eager: true } means Vite resolves URLs at build/dev time —
-// just restart the dev server after adding new images to public/gallery/.
-const imageFiles = import.meta.glob('/public/gallery/*.{jpg,jpeg,png,webp,gif,svg}', { eager: true });
+const galleryImages = [
+  '/gallery/image2.jpg.jpeg',
+  '/gallery/image3.jpg.jpeg',
+  '/gallery/image4.jpg.jpeg',
+  '/gallery/image5.jpg.jpeg',
+  '/gallery/image6.jpg.jpeg',
+  '/gallery/image7.jpg.jpeg',
+  '/gallery/WhatsApp Image 2026-07-18 at 3.25.49 PM.jpeg',
+  '/gallery/WhatsApp Image 2026-07-18 at 3.25.50 PM.jpeg',
+  '/gallery/WhatsApp Image 2026-07-18 at 3.25.50 PM (1).jpeg',
+];
 
-const galleryItems = Object.keys(imageFiles)
-  // Sort alphabetically so order is consistent regardless of filesystem order
-  .sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }))
-  .map((path, index) => {
-    // Strip the leading "/public" prefix (Vite serves public/ at the root)
-    const relativePath = path.replace('/public', '');
-
-    // URL-encode each path segment individually so filenames with spaces,
-    // parentheses, or other special characters resolve correctly in the browser.
-    const encodedSrc = relativePath
-      .split('/')
-      .map((segment) => encodeURIComponent(segment))
-      .join('/');
-
-    return {
-      id: index + 1,
-      src: encodedSrc,
-      alt: `SK Movers Gallery – Image ${index + 1}`,
-    };
-  });
+const galleryItems = galleryImages.map((src, index) => ({
+  id: index + 1,
+  src: encodeURI(src),
+  alt: `SK Movers Gallery – Image ${index + 1}`,
+}));
 
 const Gallery = () => {
   const [lightboxIndex, setLightboxIndex] = useState(null);

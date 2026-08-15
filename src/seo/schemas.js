@@ -94,6 +94,21 @@ export const servicesSchemas = () => [
   breadcrumb([homeCrumb, { name: 'Services', url: buildUrl('/services') }]),
 ];
 
+// ── Process ──────────────────────────────────────────────────
+export const processSchemas = () => [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': buildUrl('/process'),
+    name: PAGES.process.title,
+    description: PAGES.process.description,
+    url: buildUrl('/process'),
+    mainEntity: { '@id': `${BASE_URL}/#business` },
+  },
+  BUSINESS_LD,
+  breadcrumb([homeCrumb, { name: 'How It Works', url: buildUrl('/process') }]),
+];
+
 // ── Service Areas ────────────────────────────────────────────
 export const serviceAreasSchemas = () => [
   {
