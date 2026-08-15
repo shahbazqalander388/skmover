@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { Phone, Mail, MapPin, Map, MessageCircle, Contact as ContactIcon, AlertCircle } from 'lucide-react';
-import { FaWhatsapp } from 'react-icons/fa';
-import { FaFacebookF } from 'react-icons/fa';
+import { Phone, Mail, MapPin, Contact as ContactIcon, AlertCircle } from 'lucide-react';
+import { FaWhatsapp, FaFacebookF, FaLocationDot } from 'react-icons/fa6';
 import { useLanguage } from '../../context/LanguageContext';
 
 const Contact = () => {
@@ -157,7 +156,7 @@ const Contact = () => {
                 className="flex flex-col items-center gap-2 p-4 rounded-2xl text-center transition-all hover:-translate-y-1 text-xs font-medium"
                 style={{ background: 'rgba(37,211,102,0.1)', border: '1px solid rgba(37,211,102,0.25)', color: '#4ade80' }}
               >
-                <MessageCircle className="w-6 h-6" />
+                <FaWhatsapp className="w-6 h-6" />
                 WhatsApp
               </a>
               <a
@@ -177,7 +176,7 @@ const Contact = () => {
                 className="flex flex-col items-center gap-2 p-4 rounded-2xl text-center transition-all hover:-translate-y-1 text-xs font-medium"
                 style={{ background: 'rgba(234,67,53,0.1)', border: '1px solid rgba(234,67,53,0.25)', color: '#f87171' }}
               >
-                <Map className="w-6 h-6" />
+                <FaLocationDot className="w-6 h-6" />
                 Maps
               </a>
             </div>

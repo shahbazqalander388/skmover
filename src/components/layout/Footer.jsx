@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Truck, Phone, Mail, MapPin, Map } from 'lucide-react';
-import { FaFacebookF } from 'react-icons/fa';
+import { FaFacebookF, FaWhatsapp, FaHeart } from 'react-icons/fa6';
 import { useLanguage } from '../../context/LanguageContext';
 
 const Footer = () => {
@@ -48,7 +48,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Company Info */}
           <div className="lg:col-span-1">
-            <Link to="/" className="flex items-center gap-3 mb-5 group">
+            <Link to="/home" className="flex items-center gap-3 mb-5 group">
               <div
                 className="w-12 h-12 rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform"
                 style={{ background: 'linear-gradient(135deg, #1e40af, #3b82f6)' }}
@@ -104,7 +104,7 @@ const Footer = () => {
                   style={{ background: 'rgba(37,211,102,0.15)', border: '1px solid rgba(37,211,102,0.3)' }}
                   aria-label="WhatsApp"
                 >
-                  <span className="text-green-400 text-sm font-bold">W</span>
+                  <FaWhatsapp className="w-4 h-4 text-green-400" />
                 </a>
               </div>
             </div>
@@ -235,9 +235,9 @@ const Footer = () => {
         <div className="gradient-divider mt-12 mb-6" />
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-500">
           <p>{t.footer.copyright}</p>
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1.5">
             <span>Built with</span>
-            <span className="text-red-500">❤️</span>
+            <FaHeart className="w-3.5 h-3.5 text-red-500" />
             <span>for SK Movers</span>
           </div>
         </div>

@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '../../context/LanguageContext';
-import { MessageCircle } from 'lucide-react';
+import { FaWhatsapp } from 'react-icons/fa6';
 
 const WhatsAppButton = () => {
   const { t } = useLanguage();
@@ -13,11 +13,11 @@ const WhatsAppButton = () => {
         rel="noopener noreferrer"
         whileHover={{ scale: 1.12 }}
         whileTap={{ scale: 0.95 }}
-        className="whatsapp-pulse w-14 h-14 rounded-full flex items-center justify-center shadow-2xl cursor-pointer"
+        className="whatsapp-pulse w-14 h-14 rounded-full flex items-center justify-center shadow-2xl cursor-pointer text-white"
         style={{ backgroundColor: '#25D366' }}
         aria-label={t.whatsapp.tooltip}
       >
-        <MessageCircle className="w-7 h-7 text-white fill-current" />
+        <FaWhatsapp className="w-8 h-8" />
       </motion.a>
     </div>
   );

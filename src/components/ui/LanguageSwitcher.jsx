@@ -4,9 +4,9 @@ import { useLanguage } from '../../context/LanguageContext';
 import { Globe, ChevronDown, Check } from 'lucide-react';
 
 const languages = [
-  { code: 'en', label: 'English', flag: '🇬🇧', native: 'English' },
-  { code: 'ar', label: 'Arabic', flag: '🇸🇦', native: 'العربية' },
-  { code: 'ur', label: 'Urdu', flag: '🇵🇰', native: 'اردو' },
+  { code: 'en', label: 'English', tag: 'EN', native: 'English' },
+  { code: 'ar', label: 'Arabic', tag: 'AR', native: 'العربية' },
+  { code: 'ur', label: 'Urdu', tag: 'UR', native: 'اردو' },
 ];
 
 const LanguageSwitcher = ({ mobile = false }) => {
@@ -40,7 +40,9 @@ const LanguageSwitcher = ({ mobile = false }) => {
       >
         <Globe className="w-4 h-4 text-blue-400 flex-shrink-0" />
         <span className="flex items-center gap-1.5">
-          <span>{current?.flag}</span>
+          <span className="text-[11px] font-bold px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-300 border border-blue-500/30">
+            {current?.tag}
+          </span>
           <span>{current?.native}</span>
         </span>
         <ChevronDown
@@ -79,7 +81,9 @@ const LanguageSwitcher = ({ mobile = false }) => {
                 aria-selected={language === lang.code}
               >
                 <span className="flex items-center gap-2">
-                  <span className="text-base">{lang.flag}</span>
+                  <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-white/10 text-white border border-white/15">
+                    {lang.tag}
+                  </span>
                   <div className="text-left">
                     <div className="font-medium">{lang.native}</div>
                     <div className="text-xs opacity-60">{lang.label}</div>

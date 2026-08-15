@@ -1,7 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Phone, MessageCircle, FileText, ChevronDown, Truck, Shield, Clock, Star } from 'lucide-react';
+import { Phone, FileText, ChevronDown, Truck, Shield, Clock, Star } from 'lucide-react';
+import { FaWhatsapp } from 'react-icons/fa6';
 import { gsap } from 'gsap';
 import { useLanguage } from '../../context/LanguageContext';
 
@@ -180,7 +181,7 @@ const Hero = () => {
                 boxShadow: '0 4px 20px rgba(37,211,102,0.35)',
               }}
             >
-              <MessageCircle className="w-5 h-5" />
+              <FaWhatsapp className="w-5 h-5" />
               {t.hero.whatsapp}
             </a>
             <Link

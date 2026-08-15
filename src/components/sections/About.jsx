@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { CheckCircle2, Users, MapPin, Award } from 'lucide-react';
+import { FaTruckFast, FaBoxesPacking, FaHouse, FaBuilding, FaStar } from 'react-icons/fa6';
 import { useLanguage } from '../../context/LanguageContext';
 
 const About = () => {
@@ -16,6 +17,13 @@ const About = () => {
     { icon: Award, value: '5+', label: t.about.yearsExp, color: '#f97316' },
     { icon: Users, value: '500+', label: t.about.happyClients, color: '#3b82f6' },
     { icon: MapPin, value: '6', label: t.about.citiesCovered, color: '#22c55e' },
+  ];
+
+  const serviceHighlights = [
+    { icon: FaTruckFast, label: 'Moving', color: '#3b82f6' },
+    { icon: FaBoxesPacking, label: 'Packing', color: '#f97316' },
+    { icon: FaHouse, label: 'House Shifting', color: '#22c55e' },
+    { icon: FaBuilding, label: 'Office Relocation', color: '#a855f7' },
   ];
 
   return (
@@ -49,22 +57,22 @@ const About = () => {
             >
               {/* Icon grid */}
               <div className="grid grid-cols-2 gap-4 mb-8">
-                {[
-                  { icon: '🚚', label: 'Moving' },
-                  { icon: '📦', label: 'Packing' },
-                  { icon: '🏠', label: 'House Shifting' },
-                  { icon: '🏢', label: 'Office Relocation' },
-                ].map(({ icon, label }) => (
+                {serviceHighlights.map(({ icon: Icon, label, color }) => (
                   <div
                     key={label}
-                    className="flex flex-col items-center gap-2 p-5 rounded-2xl transition-all hover:scale-105 cursor-default"
+                    className="flex flex-col items-center gap-3 p-5 rounded-2xl transition-all hover:scale-105 cursor-default group"
                     style={{
                       background: 'rgba(255,255,255,0.05)',
                       border: '1px solid rgba(255,255,255,0.1)',
                     }}
                   >
-                    <span className="text-4xl">{icon}</span>
-                    <span className="text-xs text-gray-400 font-medium text-center">{label}</span>
+                    <div
+                      className="w-12 h-12 rounded-xl flex items-center justify-center transition-transform group-hover:scale-110"
+                      style={{ background: `rgba(${color === '#3b82f6' ? '59,130,246' : color === '#f97316' ? '249,115,22' : color === '#22c55e' ? '34,197,94' : '168,85,247'},0.15)` }}
+                    >
+                      <Icon className="w-6 h-6" style={{ color }} />
+                    </div>
+                    <span className="text-xs text-gray-300 font-medium text-center">{label}</span>
                   </div>
                 ))}
               </div>
@@ -86,13 +94,14 @@ const About = () => {
 
             {/* Floating badge */}
             <div
-              className="absolute -top-4 -right-4 px-4 py-2.5 rounded-2xl text-sm font-bold text-white shadow-xl"
+              className="absolute -top-4 -right-4 px-4 py-2.5 rounded-2xl text-sm font-bold text-white shadow-xl flex items-center gap-1.5"
               style={{
                 background: 'linear-gradient(135deg, #f97316, #fb923c)',
                 boxShadow: '0 8px 30px rgba(249,115,22,0.4)',
               }}
             >
-              ⭐ Saudi Arabia's #1 Movers
+              <FaStar className="w-4 h-4 text-yellow-300" />
+              <span>Saudi Arabia's #1 Movers</span>
             </div>
           </div>
 

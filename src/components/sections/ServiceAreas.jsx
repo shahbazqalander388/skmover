@@ -1,14 +1,15 @@
 import { motion } from 'framer-motion';
 import { MapPin, Phone, MessageCircle } from 'lucide-react';
+import { FaCity, FaWater, FaIndustry, FaMosque, FaWarehouse, FaSun } from 'react-icons/fa6';
 import { useLanguage } from '../../context/LanguageContext';
 
 const cityData = [
-  { name: 'Riyadh', ar: 'الرياض', ur: 'ریاض', emoji: '🏙️', isCapital: true },
-  { name: 'Jeddah', ar: 'جدة', ur: 'جدہ', emoji: '🌊', isCapital: false },
-  { name: 'Dammam', ar: 'الدمام', ur: 'دمام', emoji: '🛢️', isCapital: false },
-  { name: 'Medina', ar: 'المدينة المنورة', ur: 'مدینہ منورہ', emoji: '🕌', isCapital: false },
-  { name: 'Jubail', ar: 'الجبيل', ur: 'جبیل', emoji: '🏭', isCapital: false },
-  { name: 'Khobar', ar: 'الخبر', ur: 'خبر', emoji: '🌅', isCapital: false },
+  { name: 'Riyadh', ar: 'الرياض', ur: 'ریاض', Icon: FaCity, isCapital: true },
+  { name: 'Jeddah', ar: 'جدة', ur: 'جدہ', Icon: FaWater, isCapital: false },
+  { name: 'Dammam', ar: 'الدمام', ur: 'دمام', Icon: FaIndustry, isCapital: false },
+  { name: 'Medina', ar: 'المدينة المنورة', ur: 'مدینہ منورہ', Icon: FaMosque, isCapital: false },
+  { name: 'Jubail', ar: 'الجبيل', ur: 'جبیل', Icon: FaWarehouse, isCapital: false },
+  { name: 'Khobar', ar: 'الخبر', ur: 'خبر', Icon: FaSun, isCapital: false },
 ];
 
 const ServiceAreas = () => {
@@ -21,15 +22,7 @@ const ServiceAreas = () => {
       className="relative py-20 lg:py-28 overflow-hidden"
       style={{ background: 'linear-gradient(180deg, #0f172a 0%, #1a2744 50%, #0f172a 100%)' }}
     >
-      {/* Saudi Arabia silhouette hint */}
-      <div
-        className="absolute inset-0 opacity-[0.02] pointer-events-none flex items-center justify-center"
-        aria-hidden="true"
-      >
-        <span className="text-[20rem] select-none">🇸🇦</span>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-16" data-aos="fade-up">
           <div className="section-badge mx-auto mb-4">
@@ -51,22 +44,24 @@ const ServiceAreas = () => {
           <p className="section-subtitle mx-auto">{t.areas.subtitle}</p>
         </div>
 
-        {/* City Cards */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-12">
+        {/* City Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           {cityData.map((city, index) => {
-            const displayName = language === 'ar' ? city.ar : language === 'ur' ? city.ur : city.name;
+            const cityName =
+              language === 'ar' ? city.ar : language === 'ur' ? city.ur : city.name;
+            const CityIcon = city.Icon;
 
             return (
               <motion.div
                 key={city.name}
-                data-aos="zoom-in"
-                data-aos-delay={index * 60}
-                whileHover={{ y: -8, scale: 1.03 }}
-                className="relative text-center p-5 rounded-2xl cursor-default group"
+                data-aos="fade-up"
+                data-aos-delay={index * 80}
+                whileHover={{ y: -6, scale: 1.02 }}
+                className="relative p-7 rounded-2xl group overflow-hidden transition-all duration-300"
                 style={{
                   background: city.isCapital
-                    ? 'linear-gradient(135deg, rgba(30,64,175,0.25) 0%, rgba(59,130,246,0.15) 100%)'
-                    : 'rgba(255,255,255,0.04)',
+                    ? 'linear-gradient(135deg, rgba(30,64,175,0.4) 0%, rgba(15,23,42,0.8) 100%)'
+                    : 'rgba(255,255,255,0.03)',
                   border: city.isCapital
                     ? '1px solid rgba(59,130,246,0.4)'
                     : '1px solid rgba(255,255,255,0.08)',
@@ -75,55 +70,56 @@ const ServiceAreas = () => {
               >
                 {city.isCapital && (
                   <div
-                    className="absolute -top-2 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded-full text-[10px] font-bold text-white whitespace-nowrap"
-                    style={{ background: 'linear-gradient(135deg, #1e40af, #3b82f6)' }}
+                    className="absolute top-4 right-4 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full text-blue-300"
+                    style={{ background: 'rgba(59,130,246,0.2)', border: '1px solid rgba(59,130,246,0.3)' }}
                   >
                     Capital
                   </div>
                 )}
 
-                <div className="text-4xl mb-3 transition-transform duration-300 group-hover:scale-110">
-                  {city.emoji}
+                <div className="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 mb-4 group-hover:scale-110 group-hover:bg-blue-500/20 transition-all">
+                  <CityIcon className="w-6 h-6" />
                 </div>
-                <div className="text-white font-bold text-sm">{displayName}</div>
-                <div className="flex items-center justify-center gap-1 mt-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
-                  <span className="text-green-400 text-[10px] font-medium">Active</span>
+
+                <h3 className="text-xl font-bold text-white mb-2">{cityName}</h3>
+                <p className="text-gray-400 text-sm mb-6 leading-relaxed">
+                  {t.areas.coverage} {cityName} & {t.areas.surrounding}
+                </p>
+
+                <div className="flex gap-3">
+                  <a
+                    href="tel:+966547469226"
+                    className="flex-1 flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl text-xs font-semibold text-white transition-all hover:scale-105"
+                    style={{ background: 'linear-gradient(135deg, #1e40af, #3b82f6)' }}
+                    aria-label={`Call for moving services in ${cityName}`}
+                  >
+                    <Phone className="w-3.5 h-3.5" />
+                    {t.nav.callNow}
+                  </a>
+                  <a
+                    href="https://wa.me/966547469226"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl text-xs font-semibold text-white transition-all hover:scale-105"
+                    style={{ background: 'rgba(37,211,102,0.2)', border: '1px solid rgba(37,211,102,0.4)', color: '#4ade80' }}
+                    aria-label={`WhatsApp for moving services in ${cityName}`}
+                  >
+                    <MessageCircle className="w-3.5 h-3.5" />
+                    WhatsApp
+                  </a>
                 </div>
               </motion.div>
             );
           })}
         </div>
 
-        {/* Bottom CTA */}
+        {/* Coverage Note */}
         <div
           data-aos="fade-up"
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 p-8 rounded-2xl"
-          style={{
-            background: 'linear-gradient(135deg, rgba(30,64,175,0.15) 0%, rgba(249,115,22,0.1) 100%)',
-            border: '1px solid rgba(59,130,246,0.2)',
-          }}
+          className="text-center p-6 rounded-2xl max-w-2xl mx-auto"
+          style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)' }}
         >
-          <div className="text-center sm:text-left">
-            <h3 className="text-white font-bold text-lg">Don't see your city?</h3>
-            <p className="text-gray-400 text-sm">Contact us and we'll see how we can help!</p>
-          </div>
-          <div className="flex gap-3 flex-shrink-0">
-            <a href="tel:+966547469226" className="btn-accent">
-              <Phone className="w-4 h-4" />
-              {t.areas.contactUs}
-            </a>
-            <a
-              href="https://wa.me/966547469226"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-white text-sm transition-all hover:scale-105"
-              style={{ background: '#25D366' }}
-            >
-              <MessageCircle className="w-4 h-4" />
-              WhatsApp
-            </a>
-          </div>
+          <p className="text-gray-300 text-sm">{t.areas.allKingdom}</p>
         </div>
       </div>
     </section>

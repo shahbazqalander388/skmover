@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import { Phone, MessageCircle, FileText, ArrowRight } from 'lucide-react';
+import { Phone, FileText, ArrowRight, Truck } from 'lucide-react';
+import { FaWhatsapp } from 'react-icons/fa6';
 import { useLanguage } from '../../context/LanguageContext';
 
 const ContactCTA = () => {
@@ -34,7 +35,8 @@ const ContactCTA = () => {
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-semibold text-orange-300 mb-6"
             style={{ background: 'rgba(249,115,22,0.15)', border: '1px solid rgba(249,115,22,0.3)' }}
           >
-            🚚 Available 24/7 – Saudi Arabia
+            <Truck className="w-4 h-4 text-orange-400" />
+            <span>Available 24/7 – Saudi Arabia</span>
           </div>
 
           <h2
@@ -69,7 +71,7 @@ const ContactCTA = () => {
                 boxShadow: '0 8px 30px rgba(37,211,102,0.35)',
               }}
             >
-              <MessageCircle className="w-5 h-5" />
+              <FaWhatsapp className="w-5 h-5" />
               {t.cta.whatsapp}
             </a>
             <Link

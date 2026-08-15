@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Truck, Phone, Menu, X } from 'lucide-react';
+import { FaWhatsapp } from 'react-icons/fa6';
 import { useLanguage } from '../../context/LanguageContext';
 import LanguageSwitcher from '../ui/LanguageSwitcher';
 
@@ -371,7 +372,7 @@ const Navbar = () => {
                   className="flex items-center justify-center gap-2 w-full py-3.5 rounded-xl text-sm font-semibold text-white transition-all"
                   style={{ background: '#25D366' }}
                 >
-                  <span>💬</span>
+                  <FaWhatsapp className="w-4 h-4" />
                   WhatsApp
                 </a>
               </div>
