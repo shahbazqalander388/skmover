@@ -10,7 +10,6 @@ const Navbar = () => {
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('hero');
 
   const normalizePath = (p) => {
     if (!p) return '/';
@@ -37,86 +36,18 @@ const Navbar = () => {
   }, [mobileOpen]);
 
   const navLinks = [
-    { label: t.nav?.home || 'Home', path: '/', sectionId: 'hero' },
-    { label: t.nav?.about || 'About', path: '/about', sectionId: 'about' },
-    { label: t.nav?.services || 'Services', path: '/services', sectionId: 'services' },
-    { label: t.nav?.process || 'Process', path: '/process', sectionId: 'process' },
-    { label: t.nav?.whyUs || 'Why Us', path: '/why-choose-us', sectionId: 'why-us' },
-    { label: t.nav?.serviceAreas || 'Service Areas', path: '/service-areas', sectionId: 'service-areas' },
-    { label: t.nav?.gallery || 'Gallery', path: '/gallery', sectionId: 'gallery' },
-    { label: t.nav?.faq || 'FAQ', path: '/faq', sectionId: 'faq' },
-    { label: t.nav?.contact || 'Contact', path: '/contact', sectionId: 'contact' },
+    { label: t.nav?.home || 'Home', path: '/' },
+    { label: t.nav?.about || 'About', path: '/about' },
+    { label: t.nav?.services || 'Services', path: '/services' },
+    { label: t.nav?.process || 'Process', path: '/process' },
+    { label: t.nav?.whyUs || 'Why Us', path: '/why-choose-us' },
+    { label: t.nav?.serviceAreas || 'Service Areas', path: '/service-areas' },
+    { label: t.nav?.gallery || 'Gallery', path: '/gallery' },
+    { label: t.nav?.faq || 'FAQ', path: '/faq' },
+    { label: t.nav?.contact || 'Contact', path: '/contact' },
   ];
 
-  // ScrollSpy observer on Home route
-  useEffect(() => {
-    if (currentPath !== '/') {
-      setActiveSection('');
-      return;
-    }
-
-    const handleScrollSpy = () => {
-      const scrollPosition = window.scrollY + 200;
-
-      if (window.scrollY < 100) {
-        setActiveSection('hero');
-        return;
-      }
-
-      // If scrolled close to bottom of page, activate contact
-      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 100) {
-        setActiveSection('contact');
-        return;
-      }
-
-      const sections = navLinks
-        .map((link) => ({ id: link.sectionId, el: document.getElementById(link.sectionId) }))
-        .filter((s) => s.el !== null)
-        .sort((a, b) => a.el.offsetTop - b.el.offsetTop);
-
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const { id, el } = sections[i];
-        if (el && scrollPosition >= el.offsetTop) {
-          setActiveSection(id);
-          return;
-        }
-      }
-
-      setActiveSection('hero');
-    };
-
-    window.addEventListener('scroll', handleScrollSpy, { passive: true });
-    const timer = setTimeout(handleScrollSpy, 150);
-
-    return () => {
-      window.removeEventListener('scroll', handleScrollSpy);
-      clearTimeout(timer);
-    };
-  }, [currentPath, t]);
-
-  const handleNavClick = (e, link) => {
-    if (currentPath === '/') {
-      e.preventDefault();
-      setMobileOpen(false);
-      const element = document.getElementById(link.sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-        setActiveSection(link.sectionId);
-      } else if (link.path === '/') {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        setActiveSection('hero');
-      }
-    } else {
-      setMobileOpen(false);
-    }
-  };
-
-  const isActive = (link) => {
-    if (currentPath === '/') {
-      return activeSection === link.sectionId;
-    }
-    return currentPath === normalizePath(link.path);
-  };
+  const isActive = (link) => currentPath === normalizePath(link.path);
 
   return (
     <>
@@ -171,7 +102,6 @@ const Navbar = () => {
                   <Link
                     key={link.path}
                     to={link.path}
-                    onClick={(e) => handleNavClick(e, link)}
                     className={`relative px-3 py-2 text-xs 2xl:text-sm font-medium rounded-lg transition-all duration-200 whitespace-nowrap ${
                       active
                         ? 'text-blue-400 bg-blue-500/10 font-semibold'
@@ -284,7 +214,7 @@ const Navbar = () => {
                     >
                       <Link
                         to={link.path}
-                        onClick={(e) => handleNavClick(e, link)}
+                        onClick={() => setMobileOpen(false)}
                         className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
                           active
                             ? 'bg-blue-500/15 text-blue-400 border border-blue-500/20 font-semibold'
